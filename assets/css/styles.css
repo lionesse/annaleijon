@@ -19,7 +19,7 @@ body {
 
 **********************************************************************/
 .navbar {
-  border-width: 1px 0;
+  border-width: 0px 0;
   -webkit-border-radius: 0;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 0;
@@ -75,19 +75,21 @@ body {
 .navbar-default .navbar-nav > li > a:focus {
   color: #000000;
   background-color: #ffffff;
+  text-decoration: underline;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #000000;
   background-color: #ffffff;
+  text-decoration: underline;
 }
 .navbar-default .dropdown ul.dropdown-menu > li > a {
   color: #454545;
 }
 .navbar-default .dropdown ul.dropdown-menu > li > a:hover {
-  background-color: #eeeeee;
   color: #000000;
+  background-color: #ffffff;
 }
 .navbar-default .navbar-toggle {
   border-color: #666666;
@@ -106,8 +108,9 @@ body {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #ffffff;
   color: #000000;
+  background-color: #ffffff;
+  text-decoration: underline;
 }
 /****************************************************************************************
 
@@ -192,10 +195,11 @@ h5 {
   font-size: 1.25rem;
 }
 a {
-  color: #bd1550;
+  color: #333333;
 }
 a:hover {
-  color: #e93675;
+  color: #333333;
+  text-decoration: underline
 }
 .lead {
   font-weight: 300;
@@ -225,10 +229,10 @@ a:hover {
 
 **********************************************************************/
 #head {
-  background: #f4f4f4 url(../images/capture.png) top center;
+  background: #ffffff ;
   background-size: cover;
   color: #7C7C7C;
-  padding: 30px 0 35px 0;
+  padding: 60px 0 60px 0;
 }
 #head img.img-circle {
   display: block;
@@ -496,7 +500,7 @@ img {
   width: 100%;
   overflow: hidden;
   margin: 0px 0 25px;
-  text-align: center;
+  text-align: left;
   font-weight: 300;
   text-transform: uppercase;
   font-size: 36px;
@@ -535,7 +539,7 @@ img {
   margin-left: 45px;
 }
 .entry-header .entry-meta {
-  text-align: center;
+  text-align: left;
   font-family: Georgia, serif;
   font-size: 18px;
   font-size: 1.125rem;
@@ -695,7 +699,8 @@ footer.entry-meta .meta-in {
   color: #333333;
 }
 #comments .comment-meta a:hover {
-  color: #bd1550;
+  color: #333333;
+  text-decoration: underline
 }
 #comments .comment-meta .author {
   margin: 0 20px 0 0;
