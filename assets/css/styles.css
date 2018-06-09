@@ -8,6 +8,9 @@ body {
   color: #666666;
   padding: 0;
 }
+body a:hover {
+  color: #ccc;
+}
 .topspace {
   margin-top: 40px;
 }
@@ -767,7 +770,7 @@ footer.entry-meta .meta-in {
   margin: 0 0 20px;
 }
 #underfooter {
-  background: #191919;
+  background: #;
   padding: 15px 0;
   color: #777;
   font-size: 12px;
@@ -782,11 +785,12 @@ footer.entry-meta .meta-in {
   margin: 0;
 }
 .follow-me-icons {
-  font-size: 30px;
+  font-size: 40px;
+  margin: 10px 20px 10px 0;
 }
 .follow-me-icons i {
   float: left;
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
 }
 /* Max page width
 /////////////////////////////////////////////////////////////////////*/
