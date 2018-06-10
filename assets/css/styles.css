@@ -224,6 +224,9 @@ a:hover {
   max-width: 100%;
   height: auto;
 }
+label {
+    font-weight: normal !important;
+}
 /*********************************************************************
 
 
@@ -797,5 +800,11 @@ footer.entry-meta .meta-in {
 @media (min-width: 1200px) {
   .container {
     max-width: 1080px;
+  }
+}
+
+@media (max-width: 767px) {
+  .title-container {
+    text-align: center;
   }
 }
