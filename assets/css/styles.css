@@ -1,6 +1,5 @@
 html {
   font-size: 100%;
-  overflow-x: hidden;
 }
 body {
   font-size: 15px;
@@ -12,6 +11,9 @@ body {
 }
 body a:hover {
   color: #ccc;
+}
+#main {
+  overflow-x: hidden;
 }
 .topspace {
   margin-top: 40px;
