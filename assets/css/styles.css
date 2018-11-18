@@ -1,5 +1,6 @@
 html {
   font-size: 100%;
+  overflow-x: hidden;
 }
 body {
   font-size: 15px;
@@ -7,7 +8,6 @@ body {
   font-family: "Open sans", Helvetica, Arial, sans-serif;
   color: #666666;
   padding: 0;
-  overflow-x: hidden;
   width: 100%;
 }
 body a:hover {
