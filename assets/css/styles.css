@@ -2,8 +2,8 @@ html {
   font-size: 100%;
 }
 body {
-  font-size: 15px;
-  font-size: 0.9375rem;
+  font-size: 17px;
+  font-size: 1.075rem;
   font-family: "Open sans", Helvetica, Arial, sans-serif;
   color: #666666;
   padding: 0;
@@ -563,6 +563,8 @@ img {
 }
 .entry-content {
   margin: 0 0 60px 0;
+  line-height: 1.6;
+  font-size: 16px;
 }
 .entry-content h2 {
   line-height: 1.2;
