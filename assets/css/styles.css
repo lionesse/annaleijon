@@ -198,7 +198,12 @@ h6,
 }
 h1 {
   font-size: 40px;
-  font-size: 2.5rem;
+  font-size: 2.5rem; 
+}
+.link-title {
+  color: #0000EE;
+  text-decoration: underline;
+  padding-bottom: 1px; 
 }
 h2 {
   font-size: 36px;
@@ -217,11 +222,21 @@ h5 {
   font-size: 1.25rem;
 }
 a {
-  color: #333333;
+  color: #0000EE;
+  padding-bottom: 1px;
+  text-decoration: underline;
+}
+.inactive-nav-item {
+  text-decoration: none;
+}
+.master-headline {
+  color: black;
+  text-decoration: none;
 }
 a:hover {
-  color: #333333;
-  text-decoration: underline
+  color: ##1a0dab;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .lead {
   font-weight: 300;
