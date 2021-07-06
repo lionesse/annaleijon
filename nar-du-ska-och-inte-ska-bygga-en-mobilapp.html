@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="author"      content="Anna Leijon">
+	
+	<title>När du ska och inte ska bygga en mobilapp | By Anna Leijon</title>
+
+	<link rel="shortcut icon" href="assets/images/favicon.ico">
+	
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<!-- Icon font -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="assets/css/styles.css">
+
+	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
+
+    <!-- HTML Meta Tags -->
+    <meta name="author" content="Anna Leijon">
+    <meta name="description" content="In this blog article, which is in Swedish, I describe the pros and cons of building a web versus mobile app. I argue that the mobile app market is saturated amongst other things.">
+    <link rel="canonical" href="https://annaleijon.se/nar-du-ska-och-inte-ska-bygga-en-mobilapp.html">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="Anna Leijon">
+    <meta itemprop="description" content="In this blog article, which is in Swedish, I describe the pros and cons of building a web versus mobile app. I argue that the mobile app market is saturated amongst other things.">
+    <meta itemprop="image" content="assets/images/word cloud mobilappar.jpg">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://annaleijon.se/nar-du-ska-och-inte-ska-bygga-en-mobilapp.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="När du ska och inte ska bygga en mobilapp | By Anna Leijon">
+    <meta property="og:description" content="In this blog article, which is in Swedish, I describe the pros and cons of building a web versus mobile app. I argue that the mobile app market is saturated amongst other things.">
+    <meta name=image property="og:image" content="assets/images/word cloud mobilappar.jpg">
+
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="När du ska och inte ska bygga en mobilapp | By Anna Leijon">
+    <meta name="twitter:description" content="In this blog article, which is in Swedish, I describe the pros and cons of building a web versus mobile app. I argue that the mobile app market is saturated amongst other things.">
+    <meta name="twitter:image" content="assets/images/word cloud mobilappar.jpg">
+    <meta name="twitter:site" content="@annaleijons">
+
+	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112011262-1"></script>
+       <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-112011262-1');
+     </script>
+
+<!-- Hotjar Tracking Code for http://annaleijon.se/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1102767,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+</head>
+<body>
+
+<header id="header">
+	<div class="block">
+  		<img src="" data-speed="-1" class="img-parallax">
+		<center>
+			<span class="title" STYLE="font-family: 'Lobster', cursive; font-size: 7rem"><b><a class="master-headline" href="index.html">Anna Leijon</a></b></span>
+		</center>
+	</div>
+	
+	<nav class="navbar navbar-default navbar-sticky">
+
+		<div class="container-fluid">
+			<div class="navbar-header">
+
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div>
+			
+			<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 0.989583px;">
+
+			<div class="navbar-collapse in" id="bs-example-navbar-collapse-1">
+
+				<ul class="nav navbar-nav">
+
+
+					<li><a class="inactive-nav-item" href="index.html">Hello</a></li>
+					<li><a class="inactive-nav-item" href="writings.html"><u>Writings</u></a></li>
+					<li><a class="inactive-nav-item" href="videos.html">Videos</a></li>
+					<li><a class="inactive-nav-item" href="doings.html">Doings</a></li>
+					<!-- <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="sidebar-left.html">Left Sidebar</a></li>
+							<li><a href="sidebar-right.html">Right Sidebar</a></li>
+							<li><a href="single.html">Blog Post</a></li>
+						</ul>
+					</li> -->
+					<!-- <li><a href="blog.html">Blog</a></li> -->
+					<li><a class="inactive-nav-item" href="memes.html">Memes</a></li>
+					<li><a class="inactive-nav-item" href="random.html">Random stuff</a></li>
+					<li><a class="inactive-nav-item" href="contact.html">Contact</a></li>
+
+				</ul>
+			</div>		
+			</div><!--/.nav-collapse -->			
+		</div>	
+
+	</nav>
+
+</header>
+
+<main id="main">
+
+	<div class="container">
+
+		<div class="row topspace">
+			<div class="col-sm-8 col-sm-offset-2">
+															
+				<article class="post">
+					<header class="entry-header">
+						<div class="entry-meta"> 
+							<span class="posted-on"><time class="entry-date published" date="2021-06-08">July 6, 2021</time></span>			
+						</div>
+						<h1 class="entry-title">När du ska och när du INTE ska bygga en MOBILAPP</h1>
+					</header>
+					<div class="entry-content">
+						<br/>
+						<div><i>Det är inte helt lätt att förutse på förhand och kan vara svårt att pivot:a från i efterhand. Huruvida det är mobil- eller webbapp som passar för din idé och din produkt. Det kan mycket väl vara så att din produkt bär eller brister just på grund av att du valde det ena eller det andra där i början. Valet mellan mobil- och webbapp har effekter på såväl rekrytering, finansiering, budget, marknadsföring som säljarbete och genomsyrar egentligen alla aspekter av din produkt och ditt företag. Därför är det otroligt viktigt att fatta ett välgrundat beslut i den här frågan tidigt i din produktutveckling då du kanske inte har råd, tid, kunskap eller vill bygga båda apparna samtidigt. Jag stöter på många personer som borde ha stångats mer med det här beslutet än de gjorde och därför vill jag sammanfatta skillnaderna mellan de olika alternativen en gång för alla. Jag skriver den här artikeln för att sammanställa för- och nackdelarna med att välja att bygga mobilapp jämfört med webbapp för att underlätta för er att fatta rätt beslut i er framtida produktutveckling.</i></div>
+						<br/>
+						<div>Mobilappar har varit hype:ade under en längre period. Jag får en känsla av att det är ungefär lite samma sak med “mobilapp” som med AI eller artificiell intelligens. De är buzzwords, de är trendiga, folk blir besatta av dem och de är framförallt metoder för att lösa ett problem på och inte lösningen i sig. Vad jag menar med det är att många ofta utgår ifrån att de vill bygga en mobilapp eller att de vill bygga någonting som använder AI istället för att utgå från problemet och sedan välja den bästa metoden för det ändamålet. Det här är ett classic mistake. Välj problem först och sedan den bästa metoden för att lösa det problemet. Du borde inte brute-force:a fram ett problem för att du vill bygga “nästa stora mobilapp” eller för att det är bra att i media kunna säga att ni “använder AI” på ert företag. Ett annat vanligt misstag är att du har ett befintligt problem och bara antar att det kan lösas med en mobilapp eller med AI, utan att överhuvudtaget överväga alternativen och lämpligheten. Jag har skrivit en artikel om AI, <a href="https://annaleijon.se/artificial-intelligence-beyond-the-hype.html" target="_blank">Artificial Intelligence - Beyond the Hype</a>,  sedan tidigare som du också borde läsa.</div>
+						<br/>
+						<div>Nog om det. Några brasklappar som jag vill slänga in redan från början är att det händer otroligt mycket på det här området och att det här är mina personliga åsikter. All feedback mottar jag extremt tacksamt och jag blir jättegärna motbevisad om det är så att det är någonting som du inte tycker stämmer. Hur som helst, nedan listar jag alla för- och nackdelar med att bygga mobilapp framför webbapp baserat på min kunskap och erfarenhet samt begränsat av min förmåga att göra research.</div>
+						<br/>
+						<h2 class="entry-title">Fördelar med mobilapp framför webbapp</h2>
+						<br/>
+						<h5>Funktionalitet</h5>
+						<br/>
+						<ul>
+						<li>I en mobilapp kan du få tillgång till i princip alla funktioner som en mobiltelefon stödjer mer eller mindre sömlöst (som exempelvis bluetooth, NFC, USBC-kabelkoppling, WIFI, kamera, mikrofon, telefonsamtal, SMS, blixt, notifikationer såsom ljud, skärmljus och vibration, access till kontakter och annan data såsom mediafiler, geografisk location, identitetsuppgifter samt andra mobilappar och så vidare). Vissa av dessa går även i webben, men mindre sömlöst, och framförallt varierar det mellan IOS och Android vad operativsystemen och webbläsarna överhuvudtaget tillåter webbapparna att göra i mobilen. I en mobilapp krävs oftast användarens tillåtelse för att appen ska få komma åt dessa funktioner, medan det är tekniskt omöjligt eller rent av blockerat av operativsystemet i vissa fall i webbläsaren (framförallt av IOS). Därmed är det exempelvis lättare att personalisera customer experience i en mobilapp jämfört med en webbapp. En annan aspekt som jag har noterat är att vissa mobilappar blockerar möjligheten att exempelvis ta print screens, medan den möjligheten alltid finns i webbläsaren. Med andra ord kan du som bygger mobilappar såväl möjliggöra som hindra fler funktioner än de som bygger webbappar.</li>
+						</ul>
+						<h5>Återkommande användande</h5>
+						<br/>
+						<ul>
+						<li>Mobilapp är extra lämpligt för återkommande användande. En viktig punkt jag vill tillägga här är att du inte ska överskatta din apps förmåga att förändra dina kunders beteenden. Bara för att de har laddat ned en mobilapp så kommer de inte per automatik att börja använda den kontinuerligt, utan det måste framförallt initialt finnas ett återkommande behov hos användaren, tror jag. Om det behovet är att råda bot på att de är uttråkade eller att de vill utföra sina bankärenden på ett enkelt sätt spelar ingen roll. Det finns ett brett spektrum av olika typer av återkommande användande som motiverar byggandet av en mobilapp.</li>
+						</ul>
+						<h5>Performance</h5>
+						<br/>
+						<ul>
+						<li>Mobilappar är snabbare och mer effektiva än webbappar ur ett performance-perspektiv. Data kan exempelvis sparas lokalt i mobilen med mobilappar, medan webbappar kan använda webbservrar, vilket gör mobilapparna snabbare. Mobilspel är ett exempel på en typ av app som inte fungerar lika bra som webbapp i vissa fall på grund av just krav på performance och customer experience. (<a rel="nofollow noreferrer noopener" href="https://vwo.com/blog/10-reasons-mobile-apps-are-better/" target="_blank">vwo.com/blog/10-reasons-mobile-apps-are-better/</a>)</li>
+						</ul>
+						<h5>Customer experience</h5>
+						<br/>
+						<ul>
+						<li>Mobilappar innebär en mer native customer experience och mer kontroll, men också mer ansvar för utseendet och upplevelsen. Om kundupplevelsen är superviktig och du behöver kunna använda de features jag nämnde ovan relativt sömlöst, såsom exempelvis vibration och ljud, så kanske mobilapp är ditt enda alternativ. I en webbapp är du också begränsad av webbläsaren så tillvida att du måste förhålla dig till “bakåt”- och “refresh”-knapparna samt adressbaren. I en mobilapp kan du istället dra nytta av exempelvis “swipe”-rörelsen mer sömlöst än i en webbapp. (<a rel="nofollow noreferrer noopener" href="https://vwo.com/blog/10-reasons-mobile-apps-are-better/" target="_blank">vwo.com/blog/10-reasons-mobile-apps-are-better/</a>)</li>
+						</ul>
+						<h5>Offline vs online</h5>
+						<br/>
+						<ul>
+						<li>Mobilappar fungerar offline till skillnad mot vanliga webbsidor som kräver internetmottagning. Det finns också progressiva webbappar som fungerar offline och som är något av ett mellanting mellan mobilapp och en vanlig webbsida. Läs mer om progressiva webbappar här: <a rel="nofollow noreferrer noopener" href="https://www.smashingmagazine.com/2016/08/a-beginners-guide-to-progressive-web-apps/" target="_blank">smashingmagazine.com/2016/08/a-beginners-guide-to-progressive-web-apps</a>. Många mobilappar kräver dock också internetmottagning för att fungera fullt ut.</li>
+						</ul>
+						<h5>In-app-köp och att betala för att få ladda ned</h5>
+						<br/>
+						<ul>
+						<li>Du kan ta betalt av användaren för att den ska få ladda ned din mobilapp, men det går inte för din webbapp på samma sätt. För användaren kan det eventuellt kännas mer motiverat att betala för att få ladda ned en mobilapp eller att göra ett in-app-köp jämfört med att betala för sin användning direkt i webben. Du kan givetvis ta betalt i webbappar också, men det kan vara av vikt att överväga skillnaden i hur just betalningsförfarandet upplevs utifrån användarens perspektiv.</li>
+						</ul>
+						<h5>Exponerad kod</h5>
+						<br/>
+						<ul>
+						<li>Ur ett utvecklingsperspektiv kan din kod vara mer exponerad i en webbapp än i en mobilapp, men låt oss inte bli allt för tekniska i den här artikeln.</li>
+						</ul>
+						<h5>Riskkapital och finansiering</h5>
+						<br/>
+						<ul>
+						<li>Jag tror att det är lättare att få in riskkapital om du bygger en mobilapp istället för en webbapp, men det här är enbart spekulation från min sida. På samma sätt är det också lättare att bootstrappa (självfinansiera) en webbapp, i min åsikt. Huruvida du ser det som en fördel eller en nackdel får du bestämma själv.</li>
+						</ul>
+						<br/>
+						<h2 class="entry-title">Nackdelar med mobilapp framför webbapp</h2>
+						<br/>
+						<h5>Att ladda ned och installera en mobilapp</h5>
+						<br/>
+						<ul>
+						<li>Det är en hög tröskel för att få personer att ladda ned en app (själv tänker jag: “åh nej, måste jag ladda ned EN TILL app…”).  Sedan måste användarna även lägga tid på att installera och öppna den, vilket tar tid första gången och även återkommande vid uppdateringar. Webbappar löser på så vis användarens problem mer omedelbart än mobilappar.</li>
+						</ul>
+						<h5>Återkommande uppdateringar</h5>
+						<br/>
+						<ul>
+						<li>Användarna behöver ladda ned uppdateringar kontinuerligt av din mobilapp, medan webbappar uppdateras automatiskt och direkt i realtid. Mobilappar behöver således vara backwards compatible då flera olika versioner kan vara ute samtidigt, till skillnad från webbappar.</li>
+						</ul>
+						<h5>Utveckling och underhåll</h5>
+						<br/>
+						<ul>
+						<li>Mobilappar är mycket dyrare att bygga och underhålla. Mobilappar, till skillnad från webbappar, kvalitetssäkras av tredje part, och måste comply:a med alla App Store och Play Stores krav som kontinuerligt uppdateras.</li>
+						</ul>
+						<h5>Rekrytering</h5>
+						<br/>
+						<ul>
+						<li>Duktiga mobilutvecklare kan dessutom vara dyrare än duktiga webbutvecklare, enligt min erfarenhet. Med andra ord är det inte bara fler timmar som behöver läggas för att få till din mobilapp, utan det kan också vara dyrare timmar. (<a rel="nofollow noreferrer noopener" href="https://konsultrapporten.brainville.com/2021/Konsultrapporten_Q1_2021.pdf?src=wint" target="_blank">brainville.com/2021/Konsultrapporten_Q1_2021</a>) Det är också ovanligt med utvecklare som är duktiga på BÅDE webbapp- och mobilapputveckling, utan de brukar föredra och specialisera sig inom det ena eller det andra. Redan innan du tar in en utvecklare kan du således behöva fatta det här beslutet eller så kan du tvingas välja mobil- eller webbapp beroende på vilka resurser och vilken kunskap teamet besitter från starten.</li>
+						</ul>
+						<h5>Kompatibilitet</h5>
+						<br/>
+						<ul>
+						<li>Med din mobilapp måste du ta hänsyn till och bygga för de olika operativsystemen, men också såväl för gamla som för den delen nya mobilmodeller som kan innebära olika möjligheter och svårigheter. Ett exempel är featuret “dark mode” som App Store införde som krav på sina mobilappar, men som inte ens stöds av äldre mobilmodeller. (<a rel="nofollow noreferrer noopener" href="https://developer.apple.com/documentation/uikit/appearance_customization/supporting_dark_mode_in_your_interface" target="_blank">developer.apple.com/documentation/uikit/appearance_customization/supporting_dark_mode_in_your_interface</a>) Å andra sidan behöver du med din webbapp bygga stöd för och testa i mobil, padda och dator, i många olika skärmstorlekar samt även olika operativsystem och webbläsare. Sammanfattningsvis är det ändå mer komplext att bygga mobilappar än webbappar.</li>
+						</ul>
+						<h5>Betalning</h5>
+						<br/>
+						<ul>
+						<li>En nackdel med mobilappar på IOS är att all betalning måste ske via Apple (och de tar också en bit av kakan - närmare bestämt 30 % av både nedladdning och in-app-köpen <a rel="nofollow noreferrer noopener" href="https://developer.apple.com/forums/thread/83158" target="_blank">developer.apple.com/forums/thread/83158</a>), medan du i webbappar får behålla hela andelen av det du fakturerar kunden själv. Många stora techbolag motsätter sig den brutalt höga avgiften på 30 % som Apple tar. Det är också viktigt att veta att Apple tar 30 % av dig som kund på exempelvis din Spotify-prenumeration, men inte på dina Uber-beställningar. (<a rel="nofollow noreferrer noopener" href="https://betterprogramming.pub/which-apps-bypass-apples-30-commission-6bc0c6aa9db" target="_blank">betterprogramming.pub</a>) Motiveringen är att skillnaden dras vid direkta och indirekta app-köp eller prenumerationer, där Spotify möjliggör just musikstreaming direkt till användaren, medan Uber är en matchningsplattform som indirekt möjliggör taxiresan genom att endast para ihop köpare och säljare.</li>
+						</ul>
+						<h5>SEO och sökbarhet</h5>
+						<br/>
+						<ul>
+						<li>Det är svårt att nyttja SEO med mobilappar. Med andra ord kan webbappar i icke-inloggat läge (och alla dess undersidor) indexeras av sökmotorer på webben, medan mobilappar enbart går att söka på i App Store och Play store. Det går självklart att bygga en hemsida för din mobilapp också. Det finns dock inte en lika “naturlig ingång” såsom det gör på webben. Tänk så här: om jag försöker hitta en lösning på ett problem går jag alltid till webben först och söker. Om lösningen jag hittar innebär att ladda ned en app skulle jag kanske vara mindre benägen att välja den lösningen jämfört med om det finns en konkurrent som löser det direkt i webben istället. Detta kanske just för att jag inte vill byta kanal, “inte orkar ladda ned en till app” eller för att jag har bråttom.</li>
+						</ul>
+						<h5>Länkbarhet</h5>
+						<br/>
+						<ul>
+						<li>En bra webbapp fungerar utifrån en URL-struktur som indikerar i vilket state applikationen är i. Således kan webbappen delas enkelt med andra användare och det går att spara bokmärken och liknande för att snabbt återgå till exakt samma ställe vid ett senare tillfälle eller från ett annat device, vilket inte går i en mobilapp.</li>
+						</ul>						
+						<h5>App Store och Play stores spelregler</h5>
+						<br/>
+						<ul>
+						<li>Med din mobilapp är du i händerna på App Store och Play Store och de skulle exempelvis kunna stänga ned din app när som helst och i enlighet med deras villkor i deras avtal. Du måste också genomgå en godkännandeprocess för att överhuvudtaget få synas i de respektive operativsystemens appmarknader. På webben är det mycket friare. Du är också inlåst i sökranking, betyg, recensioner och liknande som App Store och Play Store sätter ramarna för - på gott och ont. En negativ review ligger kvar för alltid. App Store har nyligen tagit bort siffran “antal nedladdningar” av mobilapparna, men Play Store har kvar den. Min poäng är att de ändrar spelreglerna at their convenience och du är tvungen att comply:a vare sig du vill eller inte.</li>
+						</ul>
+						<h5>Cross-device</h5>
+						<br/>
+						<ul>
+						<li>Webbappar fungerar på mobiler, paddor och datorer, medan mobilappar fungerar på mobiler. Det finns helt enkelt begränsade cross-device-möjligheter med mobilappar jämfört med webbappar. Ett exempel är att dina inloggningsuppgifter sparas i din webbläsare och du kan logga in automatiskt på alla dina devices om du använder samma webbläsare, Google-konto och inställningar, medan dina inloggningsuppgifter till din mobilapp kan sparas lokalt i mobilen.</li>
+						</ul>
+						<h5>Felmeddelanden</h5>
+						<br/>
+						<ul>
+						<li>Felmeddelanden visas olika för användaren i mobil- jämfört med webbappar. En mobilapp “crashar” jämfört med en hemsida som kanske visar en 404-sida (not found), 400 (bad request) eller 500 (internal server error) och så vidare. (<a rel="nofollow noreferrer noopener" href="https://umbraco.com/about-us/umbraco-dictionary/http-status-codes/" target="_blank">umbraco.com/about-us/umbraco-dictionary/http-status-codes</a>) För mig personligen stör jag mig något otroligt på när mobilappar bara crashar och inte ger någon information om vad som orsakade problemet (så att jag kan rapportera det och undvika det i framtiden). Ur ett felsökningsperspektiv och när jag kontaktar kundtjänst underlättar det att kunna återge en specifik error response code.</li>
+						</ul>
+						<h5>Lagrinsgsutrymme</h5>
+						<br/>
+						<ul>
+						<li>Mobilappar kräver installation och således utrymme på din mobiltelefon - storage space - vilket inte webbappar gör.</li>
+						</ul>
+						<h5>Mobilappens framtid</h5>
+						<br/>
+						<ul>
+						<li>Skillnaden mellan mobilapp och webbapp suddas ut allt mer, känns det som, och till fördel för webbappen(!). Du kan exempelvis addera en ikon för en webbapp som du gillar på din home screen på din mobil, liksom det adderas en ikon för en mobilapp som du laddar ned automatiskt. Det här är bara ett exempel på hur gränsen suddas ut. I Play Store kan du dessutom få publicera din webbapp bredvid alla mobilappar, men App Store tillåter inte det (än?). Min poäng är att framtidssäkrandet av mobilappens fördelar är oklar gentemot webbappens. (<a rel="nofollow noreferrer noopener" href="https://clik.global/blog/mobile-app-vs-web-app-what-should-you-build" target="_blank">clik.global/blog/mobile-app-vs-web-app-what-should-you-build</a>)</li>
+						</ul>
+
+						<br/>
+						<br/>
+						<center>
+						<span class="img">
+							<img src="assets/images/Anna Leijon - mobilapp vs webbapp.jpg" alt="Anna Leijon - mobilapp vs webbapp" />
+							<span class="cover"></span>
+						</span>
+						</center>
+						<br/>
+						<div>Bland mobilappar är det hög konkurrens. Det är svårt att höras i bruset och bli en av de där 30 standardmobilapparna som en grupp med människor använder kontinuerligt och verkligen finner glädje eller annat värde i. Det finns ungefär sex miljoner mobilappar tillgängliga på App Store och Play Store sammanlagt. Genomsnittspersonen använder nio mobilappar per dag och trettio per månad. Samtidigt har genomsnittspersonen cirka åttio mobilappar nedladdade och således väldigt många som aldrig används. Det allra vanligaste är att ladda ned en mobilapp en gång och sedan aldrig använda den igen och att den gallras ut vid ett mobilbyte. Då är all din mobilapputveckling förgäves. Mobilappmarknaden är mogen, eller för att inte säga övermättad. (<a rel="nofollow noreferrer noopener" href="https://medium.com/swlh/should-you-build-an-app-424f81bd5e9" target="_blank">medium.com/swlh/should-you-build-an-app</a>)</div>				
+						<br/>
+						<div>Att få till återkommande användande är otroligt svårt och du stångas om användarens uppmärksamhet med giganter som Facebook, Messenger, Instagram, Uber, Tiktok, Whatsapp, Netflix, Spotify, Twitter, Telegram, Uber eats, Google Maps, Youtube, Tinder, Klarna, Duolingo, Linkedin, Tripadvisor och spel som Among us samt appar som är lite mer specifika för Sverige såsom Swish och BankID. Det alla dessa mobilappar har gemensamt är att de löser ett tydligt och relativt avgränsat problem. Det är otroligt viktigt för att användarna ska finna ett värde i din mobilapp och för att din mobilapp ska kvala in bland de där trettio som jag som användare ens kommer att komma ihåg och återkomma till kontinuerligt. (<a rel="nofollow noreferrer noopener" href="https://buildfire.com/app-statistics/#:~:text=The%20average%20person%20uses%209,t%20get%20used%20every%20month" target="_blank">buildfire.com/app-statistics</a>)</div>	
+						<br/>
+						<br/>
+						<center>
+						<span class="img">
+							<img src="assets/images/word cloud mobilappar.jpg" alt="word cloud mobilappar" />
+							<span class="cover"></span>
+						</span>
+						</center>
+						<br/>
+						<div>Det finns de som spekulerar i att webbappar kommer att ersätta mobilappar helt och hållet framöver och det finns onekligen flera tecken som tyder på det. Personligen tycker jag att det känns är rätt old school att installera någonting överhuvudtaget. Exempelvis så minskar antalet mobilappar som laddas ned i USA (<a rel="nofollow noreferrer noopener" href="https://mindsea.com/app-stats/" target="_blank">mindsea.com/app-stats</a>) samtidigt som endast 200 mobilappar står för 70 % av det totala mobilappanvändandet. Även om du får din användare att ladda ned din mobilapp och installera den så behålls den enbart i ett av fyra fall. (<a rel="nofollow noreferrer noopener" href="https://austinknight.com/writing/the-data-behind-why-apps-fail" target="_blank">austinknight.com/writing/the-data-behind-why-apps-fail</a>) I ljuset av dessa insikter hoppas jag att inställningen till apputveckling kommer att förändras från "the go to solution for everything" till att fokuseras runt problemet istället för lösningen.</div>
+						<br/>
+						<div>Med det sagt, mobilapp är dock superbra för vissa ändamål! Vad du än gör, bygg inte en mobilapp för att du vill bygga en mobilapp, utan du ska alltid bygga någonting för att du vill lösa ett problem. På samma sätt - använd inte AI för att du vill använda AI - använd AI för att det är en bra metod att lösa ditt problem på. Om det finns bättre metoder för att lösa ditt problem på - såsom att bygga en webbapp istället för en mobilapp - , använd dem istället! Gå igenom alla punkter som jag har listat ovan och överväg för varje punkt om det är att föredra att bygga en webb- eller mobilapp utifrån det perspektivet och väg fördelarna mot nackdelarna. På så sätt tror jag att du kommer att kunna komma fram till rätt beslut. Stort lycka till med din produktutveckling oavsett vilken du väljer av att bygga en mobil- eller webbapp :)</div>
+						<br/>
+						<div>Jag tycker att det här ämnet är superspännande och tar jättegärna emot feedback! Maila mig på: anna@annaleijon.com</div>
+						<br/>
+						<div>I min podcast <a href="https://techskaparna.se/" target="_blank">Techskaparna</a> diskuterar vi ofta det här ämnet och speciellt i ett avsnitt som kommer släppas inom kort så håll utkik och glöm inte bort att prenumerera på podden! Finns där poddar finns.</div>
+						<br/>
+						
+						<br/>
+						<div>/Anna Leijon</div>
+						<br/>
+						<br/>
+						<br/>
+
+						<br/>
+						<br/>
+						<br/>
+						<span class="img">
+							<img src="assets/images/200916-anna-leijon-lista-på-konsultmäklare.jpg" alt="Anna Leijon close up photo";/>
+							<span class="cover"></span>
+						</span>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<div>*Jag är stolt medlem och admin i ett slack-workspace som heter “Frilansare Sthlm”. Du kan maila mig om du vill få en inbjudan, men observera att vi endast vill ha enskilda frilansare som medlemmar så du får gärna länka till din linkedin-profil eller ange ditt bolagsnamn i mailet. Just nu är det över 370 frilansare i kanalen och vi pratar om allt möjligt. Maila mig på anna@annaleijon.com om du vill få en inbjudan.</div>
+						<br/>
+						<br/>
+						<div>
+						<br/>
+
+						<br/>
+				</article>
+	
+				
+											
+
+						<br/>
+					
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">	
+
+						<span class="img">
+							<img style="margin-top: 40px;width:50%;" src="assets/images/Anna Leijon lion logo.png" alt="anna leijon's lion logo"/>
+						</span>
+					</div>
+					<br/>
+					<br/>
+					<br/>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
+						<!-- Begin MailChimp Signup Form -->
+					<link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+					<style type="text/css">
+						#mc_embed_signup{background:#fff; clear:left; font:16px "Open sans", Helvetica, Arial, sans-serif; }
+						/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+						   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+					</style>
+					<div id="mc_embed_signup">
+					<form style="padding:0;" action="https://annaleijon.us18.list-manage.com/subscribe/post?u=484941723d1071560806eb19f&amp;id=c5b57c44dd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					    <div id="mc_embed_signup_scroll">
+						<span>SUBSCRIBE TO MY NEWS LETTER</span>
+						<br/>
+						<br/>
+						<span style="margin-bottom: 10px;">By subscribing, you will get notified when the next article is published before everyone else.</span>
+						<br/>
+						<br/>
+
+					<div class="col-xs-8 col-sm-9 col-md-9 col-lg-9" style="padding-left:0;padding-right:0">
+
+					<div class="mc-field-group" style="position: absolute; left">
+					<label for="mce-EMAIL">E-mail:</label>
+					<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+					</div>
+					<div id="mce-responses" class="clear">
+						<div class="response" id="mce-error-response" style="display:none"></div>
+						<div class="response" id="mce-success-response" style="display:none"></div>
+					</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+				    </div>
+				    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3" style="padding-left:0;padding-right:0">
+				    <div style="position: relative; right: -5000px;" aria-hidden="true"><input type="text" name="b_484941723d1071560806eb19f_c5b57c44dd" tabindex="-1" value=""></div>
+				    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+				    </div>
+					</form>
+					</div>
+					<script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+					</div>
+					</div>
+<!--End mc_embed_signup-->
+					</div>
+			</div> 
+		</div>
+
+
+	</div>	
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+</main>
+
+<footer id="underfooter">
+	<div class="container">
+		<div class="row">
+
+					
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="widget-body">
+<!-- 					<p>Stockholm, Sweden</p> -->
+									<p class="follow-me-icons">
+									<div>			
+									<a href="https://www.linkedin.com/in/annamikaelsdotterleijon/" rel="nofollow noreferrer noopener"><i class="fab fa-linkedin follow-me-icons"></i></a>
+									<a href="https://www.instagram.com/anna_leijon/" rel="nofollow noreferrer noopener"><i class="fab fa-instagram follow-me-icons"></i></a>
+									<a href="https://www.facebook.com/annamikaelsdotterleijon" rel="nofollow noreferrer noopener"><i class="fab fa-facebook-square follow-me-icons"></i></a>
+									<a href="mailto:pm@annaleijon.se" rel="nofollow noreferrer noopener"><i class="far fa-envelope follow-me-icons"></i></a>
+									<a href="https://www.youtube.com/channel/UCKkmmWz13J4qOuqUYkKlL2w" rel="nofollow noreferrer noopener"><i class="fab fa-youtube follow-me-icons"></i></a>
+									</div>
+									<br/>
+
+														<!-- Begin MailChimp Signup Form -->
+					<link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+					<style type="text/css">
+						#mc_embed_signup{background:#fff; clear:left; font:14px "Open sans", Helvetica, Arial, sans-serif; }
+						/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+						   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+					</style>
+					<div id="mc_embed_signup">
+					<form style="padding:0; background-color:#ececec;" action="https://annaleijon.us18.list-manage.com/subscribe/post?u=484941723d1071560806eb19f&amp;id=c5b57c44dd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					    <div id="mc_embed_signup_scroll">
+						<span>SUBSCRIBE TO MY NEWS LETTER</span>
+
+					<div class="col-xs-8 col-sm-9 col-md-9 col-lg-9" style="padding-left:0;padding-right:0">
+
+					<div class="mc-field-group" style="position: absolute; left">
+					<label for="mce-EMAIL">E-mail:</label>
+					<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+					</div>
+					<div id="mce-responses" class="clear">
+						<div class="response" id="mce-error-response" style="display:none"></div>
+						<div class="response" id="mce-success-response" style="display:none"></div>
+					</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+				    </div>
+				    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3" style="padding-left:0;padding-right:0">
+				    <div style="position: relative; right: -5000px;" aria-hidden="true"><input type="text" name="b_484941723d1071560806eb19f_c5b57c44dd" tabindex="-1" value=""></div>
+				    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+				    </div>
+					</form>
+					</div>
+					<script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+								</p>
+						</div>
+						</div>
+						</div>
+
+
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="widget-body">
+					<br/>					
+						<div class="adtag" style="text-align: right"><script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me here!', '#0000ee', 'S6S74GO4F');kofiwidget2.draw();</script></div>
+					<p class="text-right">
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						2021, Anna Mikaelsdotter Leijon<br> </p>
+<!-- 						Design: <a href="http://www.gettemplate.com" rel="designer">Initio by GetTemplate</a> </p> -->								</div>
+				</div>
+				</div>
+				</div>
+
+</br>
+
+</br>
+</br>
+</footer>
+
+
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="assets/js/template.js"></script>
+</body>
+</html>
