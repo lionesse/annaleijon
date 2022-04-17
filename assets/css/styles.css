@@ -16,9 +16,8 @@ body a:hover {
 }
 
 .adtag {
+  /*clear: none;*/
   float: right;
-  text-align: right;
-  clear: none;
 }
 
 #main {
