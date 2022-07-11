@@ -50,6 +50,9 @@ body a:hover {
   cursor: pointer;
   border-radius: 12px;
 }
+.text-center {
+  text-align: center;
+}
 /*********************************************************************
 
 
@@ -764,7 +767,7 @@ td.container-premium {
 
 
 **********************************************************************/
-#comments {
+/*#comments {
   font-size: 13px;
   font-size: 0.8125rem;
 }
@@ -853,7 +856,7 @@ td.container-premium {
 }
 #respond {
   margin: 55px 0 0 0;
-}
+}*/
 /*********************************************************************
 
 
