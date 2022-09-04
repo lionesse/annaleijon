@@ -194,7 +194,7 @@ p {
 }
 ul,
 ol {
-  line-height: 1.6em;
+  line-height: 1.8em;
   margin: 0 0 30px 0;
 }
 blockquote {
@@ -245,7 +245,8 @@ h5 {
 }
 a {
   color: #0000EE;
-  padding-bottom: 1px;
+  padding-bottom: 4px;
+  padding-top: 4px;
   text-decoration: underline;
 }
 .inactive-nav-item {
