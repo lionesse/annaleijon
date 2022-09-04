@@ -883,12 +883,9 @@ td.container-premium > div {
   background: #;
   background-color: #ececec;
   padding: 15px 0;
-  color: #777;
+  color: #1e1e1e;
   font-size: 12px;
   overflow: hidden;
-}
-#underfooter a {
-  color: #aaa;
 }
 #underfooter a:hover {
   color: #fff;
