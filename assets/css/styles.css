@@ -255,6 +255,7 @@ a {
 .master-headline {
   color: black;
   text-decoration: none;
+  font-size: 5vmax;
 }
 a:hover {
   color: ##1a0dab;
