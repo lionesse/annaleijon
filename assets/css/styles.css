@@ -14,7 +14,13 @@ body {
 body a:hover {
   color: #ccc;
 }
-
+.center {
+  padding: 2px; 
+  text-align: center;
+}
+.img {
+  padding: 5px; 
+}
 .adtag {
   /*clear: none;*/
   float: right;
