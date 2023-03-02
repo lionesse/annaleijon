@@ -912,11 +912,11 @@ td.container-premium > div {
 }
 .follow-me-icons {
   font-size: 40px;
-  margin: 10px 20px 10px 0;
+  margin: 10px 10px 10px 10px;
 }
 .follow-me-icons i {
-  float: left;
-  margin: 0 20px 0 0;
+  float: center;
+  margin: 2px 2px 2px 2px;
 }
 /* Max page width
 /////////////////////////////////////////////////////////////////////*/
