@@ -56,6 +56,11 @@ body a:hover {
   cursor: pointer;
   border-radius: 12px;
 }
+.button:hover {
+  color: ##1a0dab;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .text-center {
   text-align: center;
 }
