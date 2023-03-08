@@ -582,7 +582,7 @@
     result4.innerHTML = Math.round(calculatedResult4) + " kr"; //inkomstskatt
     result5.innerHTML = Math.round(calculatedResult5) + " kr"; //begravningsavgift
     result6.innerHTML = Math.round(calculatedResult6) + " kr"; //summa skatter mm
-    result7.innerHTML = (Math.round((calculatedResult7 + Number.EPSILON) * 100) / 100) * 100 + " %"; //procent skatter mm
+    result7.innerHTML = Math.round(calculatedResult7 * 100) + " %"; //procent skatter mm
     result8.innerHTML = Math.round(calculatedResult8) + " kr"; //statlig inkomstskatt
     result9.innerHTML = Math.round(calculatedResult9) + " kr"; //public service-avgift
     result10.innerHTML = Math.round(calculatedResult10) + " kr"; //jobbskatteavdraget förenklat
@@ -592,8 +592,8 @@
     result0.innerHTML = Math.round(calculatedResult0) + " kr"; //bruttolön per månad
     result01.innerHTML = Math.round(calculatedResult01) + " kr"; //bruttolön per år
     result14.innerHTML = Math.round(calculatedResult14) + " kr"; //förenklad kyrkoavgift
-    result15.innerHTML = (Math.round((calculatedResult15 + Number.EPSILON) * 100) / 100) * 100 + " %"; //arbetstagaren betalar i procent
-    result16.innerHTML = (Math.round((calculatedResult16 + Number.EPSILON) * 100) / 100) * 100 + " %"; //arbetsgivaren betalar i procent
+    result15.innerHTML = Math.round(calculatedResult15 * 100) + " %"; //arbetstagaren betalar i procent
+    result16.innerHTML = Math.round(calculatedResult16 * 100) + " %"; //arbetsgivaren betalar i procent
   }
 </script>
 
