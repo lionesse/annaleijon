@@ -398,25 +398,7 @@
 <script src="assets/js/template.js"></script>
 <link rel="stylesheet" href="assets/css/Toast.css">
 <script src="assets/js/Toast.js"></script>
-<script>
-	if (!window.localStorage.getItem('book_mvp_toast_closed')) {
-     new Toast({
-  		message: 'BOOK RELEASE: "Bli Egen" by Anna Leijon',
-  		type: 'success',
-  		customButtons: [
-    	{
-      		text: 'Buy it now!',
-      		onClick: function() {
-        	window.open('https://annaleijon.se/kop-boken-bli-egen-frilansare-egenforetagare.html');
-      	}
-    	}
-  ],
-  closeCallback: function() {
-  	window.localStorage.setItem('book_mvp_toast_closed', '1');
-  }
-});
-}
-</script>
+
 </body>
 </html>
 
