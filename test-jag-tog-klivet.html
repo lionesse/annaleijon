@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kvadrat — Jag tog klivet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lila: #9088FB;
+    --ljuslila: #D9D4FC;
+    --marin: #1C1C68;
+    --gron: #00BE81;
+    --morkgron: #00493B;
+    --lime: #D9FCD9;
+    --rodorange: #FF5E3E;
+    --vit: #FFFFFF;
+    --gra: #545454;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100vh; }
+  body {
+    font-family: 'IBM Plex Sans', Verdana, sans-serif;
+    background: var(--lila);
+    color: var(--marin);
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 100% 0%, rgba(217,252,217,0.25) 0%, transparent 35%),
+      radial-gradient(circle at 0% 100%, rgba(28,28,104,0.25) 0%, transparent 40%);
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .brand-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    color: var(--vit);
+  }
+  .brand-header svg { height: 44px; width: auto; }
+  .welcome-card {
+    background: var(--vit);
+    border-radius: 32px;
+    padding: 44px 36px;
+    box-shadow: 0 24px 70px rgba(28,28,104,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .welcome-card::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 180px; height: 180px;
+    background: var(--lime);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+  .welcome-card > * { position: relative; z-index: 1; }
+  h1 {
+    font-family: 'Saira Extra Condensed', Impact, sans-serif;
+    font-weight: 900;
+    font-size: 44px;
+    color: var(--marin);
+    text-transform: uppercase;
+    line-height: 0.95;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .ingress {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--gra);
+    margin-bottom: 36px;
+  }
+  .form-group { margin-bottom: 20px; }
+  label {
+    display: block;
+    font-weight: 700;
+    color: var(--marin);
+    margin-bottom: 6px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  input[type=text], input[type=file] {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid var(--ljuslila);
+    border-radius: 12px;
+    font-family: 'IBM Plex Sans', Verdana, sans-serif;
+    font-size: 16px;
+    color: var(--marin);
+    background: var(--vit);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input[type=text]:focus {
+    outline: none;
+    border-color: var(--lila);
+    box-shadow: 0 0 0 3px rgba(144, 136, 251, 0.2);
+  }
+  input[type=file] { padding: 10px 14px; cursor: pointer; }
+  input[type=file]::file-selector-button {
+    background: var(--lila);
+    color: var(--vit);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 12px;
+    font-size: 14px;
+  }
+  input[type=file]::file-selector-button:hover { background: var(--marin); }
+  .char-count {
+    font-size: 12px;
+    color: var(--gra);
+    text-align: right;
+    margin-top: 4px;
+  }
+  .char-count.warn { color: var(--rodorange); }
+  button.cta {
+    width: 100%;
+    padding: 18px 32px;
+    background: var(--marin);
+    color: var(--lime);
+    border: none;
+    border-radius: 14px;
+    font-family: 'Saira Extra Condensed', Impact, sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
+    box-shadow: 0 8px 24px rgba(28,28,104,0.3);
+  }
+  button.cta:hover:not(:disabled) {
+    background: #2a2a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(28,28,104,0.4);
+  }
+  button.cta:disabled { opacity: 0.5; cursor: not-allowed; }
+  .photo-preview {
+    width: 90px; height: 90px; border-radius: 18px;
+    object-fit: cover; margin-top: 12px; display: none;
+    border: 3px solid var(--lila);
+  }
+  .photo-preview.show { display: block; }
+  .footer-tip {
+    text-align: center;
+    color: var(--ljuslila);
+    margin-top: 32px;
+    font-size: 14px;
+  }
+  .footer-tip strong { color: var(--lime); }
+  .loading {
+    display: none;
+    text-align: center;
+    padding: 80px 20px 40px;
+    color: var(--vit);
+  }
+  .loading.show { display: block; }
+  .loading h2 {
+    font-family: 'Saira Extra Condensed', Impact, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--lime);
+    font-size: 44px;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .loading p { color: var(--ljuslila); }
+  .progress {
+    width: 100%;
+    max-width: 400px;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    margin: 28px auto 12px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--lime);
+    width: 0%;
+    transition: width 0.3s;
+    border-radius: 4px;
+  }
+  .result-container {
+    display: none;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .result-container.show { display: block; }
+  .top-banner { text-align: center; margin-bottom: 32px; }
+  .top-banner h1 { color: var(--vit); font-size: 64px; margin-bottom: 8px; }
+  .top-banner p { color: var(--ljuslila); font-size: 17px; }
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 800px) { .result-grid { grid-template-columns: 1fr; } }
+  .result-card {
+    background: var(--vit);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 16px 50px rgba(28,28,104,0.2);
+  }
+  .result-card h3 {
+    font-family: 'Saira Extra Condensed', Impact, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--marin);
+    font-size: 28px;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .preview-wrapper {
+    background: var(--ljuslila);
+    border-radius: 16px;
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+  .preview-wrapper img, .preview-wrapper canvas {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .download-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    background: var(--marin);
+    color: var(--lime);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-family: 'IBM Plex Sans', Verdana, sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .download-btn:hover { background: #2a2a8a; }
+  .share-tip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(217,212,252,0.3);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 28px;
+    color: var(--ljuslila);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .share-tip strong { color: var(--lime); }
+  .share-tip a { color: var(--lime); text-decoration: none; font-weight: 700; }
+  .restart { margin-top: 24px; text-align: center; }
+  .restart button {
+    background: transparent;
+    color: var(--vit);
+    border: 2px solid var(--ljuslila);
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-family: 'IBM Plex Sans', Verdana, sans-serif;
+    transition: background 0.2s;
+  }
+  .restart button:hover { background: rgba(255,255,255,0.1); }
+  #render-canvas, #gif-canvas { display: none; }
+</style>
+</head>
+<body>
+
+<div class="container" id="form-page">
+  <div class="brand-header">
+    <svg viewBox="0 0 838.35 157.58" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#FFFFFF">
+        <path d="M157.44,78.87c0,26.12-2.14,51.81-14.53,64.18-12.37,12.39-38.06,14.53-64.18,14.53s-51.81-2.14-64.2-14.53C2.14,130.68.02,104.99,0,78.87,0,52.73,2.14,27.06,14.53,14.67,26.9,2.28,52.61-.74,78.71.14c14.95.51,29.9.99,42.19,3.72,7.41,1.64,10,10.87,4.54,16.13h0c-2.02,1.95-4.8,2.9-7.59,2.59-3.32-.36-6.93-.47-10.54-.6-9.41-.32-18.69.77-23.15,5.23-4.48,4.47-5.25,13.75-5.25,23.17s.78,18.69,5.25,23.17c4.46,4.47,13.73,5.23,23.17,5.23s18.69-.77,23.15-5.25c4.46-4.47,5.25-13.73,5.25-23.15,0-3.55-.09-7.09-.44-10.36-.32-2.95.72-5.87,2.86-7.93h0c5.36-5.15,14.23-2.45,15.91,4.78,2.84,12.25,3.39,27.11,3.39,41.98Z"/>
+        <path d="M219.08,134.82V20.54h16.67v51.49l54.7-51.49h23.47l-51.68,45.93,52.97,68.35h-22.22l-42.61-56.13-14.63,15v41.13h-16.67Z"/>
+        <path d="M348.55,134.82l-34.82-91.87h17.6l27.04,75.94,27.04-75.94h17.23l-34.64,91.87h-19.45Z"/>
+        <path d="M442.84,137.04c-7.41,0-13.65-1.27-18.71-3.8-5.06-2.53-8.86-5.93-11.39-10.19-2.53-4.26-3.8-8.8-3.8-13.61,0-10,3.61-17.63,10.84-22.88,7.22-5.25,16.7-7.87,28.43-7.87,5.19,0,9.88.37,14.08,1.11,4.2.74,7.65,1.61,10.37,2.59v-4.08c0-7.9-2.07-13.86-6.21-17.87-4.14-4.01-9.66-6.02-16.58-6.02-5.68,0-10.59,1.17-14.73,3.52-4.14,2.35-6.7,6.3-7.69,11.86h-16.67c.74-6.54,2.99-11.98,6.76-16.3,3.77-4.32,8.49-7.53,14.17-9.63,5.68-2.1,11.73-3.15,18.15-3.15,13.09,0,22.94,3.43,29.54,10.28,6.6,6.85,9.91,15.96,9.91,27.32v27.6c0,4.45.28,7.72.83,9.82.56,2.1,1.51,3.4,2.87,3.89,1.36.5,3.21.74,5.56.74h1.3v14.45h-3.52c-6.05,0-10.99-.99-14.82-2.96-3.83-1.97-6.42-5.93-7.78-11.85-2.84,4.81-6.76,8.86-11.76,12.13-5,3.27-11.39,4.91-19.17,4.91ZM445.43,123.52c5.43,0,10.09-1.36,13.98-4.08,3.89-2.71,6.95-6.3,9.17-10.74s3.46-9.14,3.7-14.08c-2.84-.86-6.3-1.64-10.37-2.32-4.07-.68-8.15-1.02-12.23-1.02-8.4,0-14.48,1.64-18.25,4.91-3.77,3.27-5.65,7.38-5.65,12.32,0,4.32,1.7,7.9,5.09,10.74,3.39,2.84,8.24,4.26,14.54,4.26Z"/>
+        <path d="M551.44,137.04c-9.14,0-17.1-2.1-23.89-6.3-6.79-4.2-12.1-9.94-15.93-17.23-3.83-7.28-5.74-15.56-5.74-24.82s1.91-17.5,5.74-24.73c3.83-7.22,9.17-12.9,16.02-17.04,6.85-4.14,14.79-6.21,23.8-6.21,7.53,0,14.17,1.51,19.91,4.54,5.74,3.03,10.16,7.26,13.24,12.69V20.54h16.67v114.28h-16.67v-15c-2.96,4.45-7.13,8.43-12.5,11.95-5.37,3.52-12.26,5.28-20.65,5.28ZM553.66,122.6c6.05,0,11.36-1.42,15.93-4.26,4.57-2.84,8.15-6.79,10.74-11.85,2.59-5.06,3.89-10.93,3.89-17.6s-1.3-12.53-3.89-17.6c-2.59-5.06-6.18-9.01-10.74-11.85-4.57-2.84-9.88-4.26-15.93-4.26s-11.24,1.42-15.93,4.26c-4.7,2.84-8.34,6.76-10.93,11.76-2.59,5-3.89,10.9-3.89,17.69s1.3,12.53,3.89,17.6c2.59,5.06,6.23,9.02,10.93,11.85,4.69,2.84,10,4.26,15.93,4.26Z"/>
+        <path d="M622.75,134.82V42.95h16.67v14.45c2.1-4.82,4.94-8.55,8.52-11.21,3.58-2.65,7.96-3.98,13.15-3.98h13.71v15.56h-15.37c-3.95,0-7.44,1.11-10.47,3.33-3.03,2.22-5.37,5.77-7.04,10.65-1.67,4.88-2.5,11.33-2.5,19.36v43.71h-16.67Z"/>
+        <path d="M718.51,137.04c-7.41,0-13.65-1.27-18.71-3.8-5.06-2.53-8.86-5.93-11.39-10.19-2.53-4.26-3.8-8.8-3.8-13.61,0-10,3.61-17.63,10.84-22.88,7.22-5.25,16.7-7.87,28.43-7.87,5.19,0,9.88.37,14.08,1.11,4.2.74,7.65,1.61,10.37,2.59v-4.08c0-7.9-2.07-13.86-6.21-17.87-4.14-4.01-9.66-6.02-16.58-6.02-5.68,0-10.59,1.17-14.73,3.52-4.14,2.35-6.7,6.3-7.69,11.86h-16.67c.74-6.54,2.99-11.98,6.76-16.3,3.77-4.32,8.49-7.53,14.17-9.63,5.68-2.1,11.73-3.15,18.15-3.15,13.09,0,22.94,3.43,29.54,10.28,6.6,6.85,9.91,15.96,9.91,27.32v27.6c0,4.45.28,7.72.83,9.82.56,2.1,1.51,3.4,2.87,3.89,1.36.5,3.21.74,5.56.74h1.3v14.45h-3.52c-6.05,0-10.99-.99-14.82-2.96-3.83-1.97-6.42-5.93-7.78-11.85-2.84,4.81-6.76,8.86-11.76,12.13-5,3.27-11.39,4.91-19.17,4.91ZM721.11,123.52c5.43,0,10.09-1.36,13.98-4.08,3.89-2.71,6.95-6.3,9.17-10.74,2.22-4.45,3.46-9.14,3.7-14.08-2.84-.86-6.3-1.64-10.37-2.32-4.07-.68-8.15-1.02-12.23-1.02-8.4,0-14.48,1.64-18.25,4.91-3.77,3.27-5.65,7.38-5.65,12.32,0,4.32,1.7,7.9,5.09,10.74,3.39,2.84,8.24,4.26,14.54,4.26Z"/>
+        <path d="M819.64,134.82c-5.19,0-9.57-.65-13.15-1.95-3.58-1.3-6.27-3.73-8.06-7.32-1.79-3.58-2.68-8.64-2.68-15.19v-53.35h-15.93v-14.08h15.93v-22.41h16.67v22.41h25.93v14.08h-25.93v50.75c0,3.95.31,6.85.93,8.7.62,1.85,1.91,3,3.89,3.43,1.97.43,4.81.65,8.52.65h11.3v14.26h-17.41Z"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="welcome-card">
+    <h1>Varmt välkommen<br>till Kvadrat</h1>
+    <p class="ingress">Här genererar du din alldeles egna bild och GIF som du kan dela i dina sociala medier — och tagga gärna oss när du gör det!</p>
+
+    <form id="user-form">
+      <div class="form-group">
+        <label for="firstName">Förnamn</label>
+        <input type="text" id="firstName" required maxlength="40" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Efternamn</label>
+        <input type="text" id="lastName" required maxlength="40" autocomplete="family-name">
+      </div>
+      <div class="form-group">
+        <label for="role">Din roll / profil / kompetenser</label>
+        <input type="text" id="role" required maxlength="40" placeholder="Max 40 tecken">
+        <div class="char-count"><span id="role-count">0</span> / 40</div>
+      </div>
+      <div class="form-group">
+        <label for="photo">Ladda upp en proffsig bild på dig</label>
+        <input type="file" id="photo" accept="image/*" required>
+        <img id="photo-preview" class="photo-preview" alt="Förhandsvisning">
+      </div>
+      <button type="submit" class="cta" id="submit-btn">Generera min Kvadrat-bild</button>
+    </form>
+  </div>
+
+  <p class="footer-tip">egen men inte ensam · <strong>kvadrat.se</strong></p>
+</div>
+
+<div class="container loading" id="loading">
+  <h2>Genererar din bild &amp; GIF</h2>
+  <p>Det här tar ungefär 5–15 sekunder…</p>
+  <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+  <p id="progress-text" style="margin-top:8px;font-size:14px;">Renderar…</p>
+</div>
+
+<div class="result-container" id="result-page">
+  <div class="top-banner">
+    <h1>Du tog klivet!</h1>
+    <p>Ladda ner och dela på LinkedIn &amp; Instagram</p>
+  </div>
+  <div class="result-grid">
+    <div class="result-card">
+      <h3>Bild (PNG)</h3>
+      <div class="preview-wrapper"><img id="image-preview" alt="Genererad bild"></div>
+      <button class="download-btn" id="download-image">Ladda ner bild</button>
+    </div>
+    <div class="result-card">
+      <h3>GIF (animerad)</h3>
+      <div class="preview-wrapper"><img id="gif-preview" alt="Genererad GIF"></div>
+      <button class="download-btn" id="download-gif">Ladda ner GIF</button>
+    </div>
+  </div>
+  <div class="share-tip">
+    Tagga oss gärna på LinkedIn när du delar!<br>
+    <strong>egen men inte ensam</strong> · <a href="https://kvadrat.se" target="_blank">kvadrat.se</a>
+  </div>
+  <div class="restart">
+    <button onclick="window.location.reload()">← Generera en till</button>
+  </div>
+</div>
+
+<canvas id="render-canvas" width="1080" height="1080"></canvas>
+<canvas id="gif-canvas" width="540" height="540"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.0/dist/body-pix.min.js"></script> -->
+<script>
+const C = {
+  lila: '#9088FB', ljuslila: '#D9D4FC', marin: '#1C1C68',
+  gron: '#00BE81', morkgron: '#00493B', lime: '#D9FCD9',
+  vit: '#FFFFFF', rodorange: '#FF5E3E'
+};
+
+let userPhoto = null;
+let processedPhoto = null;
+let kvadratLogoImg = null;
+let bodyPixModel = null;
+
+async function loadBodyPixModel() {
+  if (bodyPixModel) return bodyPixModel;
+  if (typeof bodyPix === 'undefined') return null;
+  try {
+    bodyPixModel = await bodyPix.load({
+      architecture: 'MobileNetV1',
+      outputStride: 16,
+      multiplier: 0.75,
+      quantBytes: 2
+    });
+    return bodyPixModel;
+  } catch (err) {
+    console.warn('BodyPix load failed:', err);
+    return null;
+  }
+}
+
+
+
+const roleInput = document.getElementById('role');
+const roleCount = document.getElementById('role-count');
+roleInput.addEventListener('input', () => {
+  roleCount.textContent = roleInput.value.length;
+  roleCount.parentElement.classList.toggle('warn', roleInput.value.length >= 38);
+});
+
+document.getElementById('photo').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  processedPhoto = null; // reset segmentation when photo changes
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const preview = document.getElementById('photo-preview');
+    preview.src = ev.target.result;
+    preview.classList.add('show');
+    const img = new Image();
+    img.onload = () => userPhoto = img;
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+function getKvadratLogoSVG(color) {
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 838.35 157.58">'
+    + '<g fill="' + color + '">'
+    + '<path d="M157.44,78.87c0,26.12-2.14,51.81-14.53,64.18-12.37,12.39-38.06,14.53-64.18,14.53s-51.81-2.14-64.2-14.53C2.14,130.68.02,104.99,0,78.87,0,52.73,2.14,27.06,14.53,14.67,26.9,2.28,52.61-.74,78.71.14c14.95.51,29.9.99,42.19,3.72,7.41,1.64,10,10.87,4.54,16.13h0c-2.02,1.95-4.8,2.9-7.59,2.59-3.32-.36-6.93-.47-10.54-.6-9.41-.32-18.69.77-23.15,5.23-4.48,4.47-5.25,13.75-5.25,23.17s.78,18.69,5.25,23.17c4.46,4.47,13.73,5.23,23.17,5.23s18.69-.77,23.15-5.25c4.46-4.47,5.25-13.73,5.25-23.15,0-3.55-.09-7.09-.44-10.36-.32-2.95.72-5.87,2.86-7.93h0c5.36-5.15,14.23-2.45,15.91,4.78,2.84,12.25,3.39,27.11,3.39,41.98Z"/>'
+    + '<path d="M219.08,134.82V20.54h16.67v51.49l54.7-51.49h23.47l-51.68,45.93,52.97,68.35h-22.22l-42.61-56.13-14.63,15v41.13h-16.67Z"/>'
+    + '<path d="M348.55,134.82l-34.82-91.87h17.6l27.04,75.94,27.04-75.94h17.23l-34.64,91.87h-19.45Z"/>'
+    + '<path d="M442.84,137.04c-7.41,0-13.65-1.27-18.71-3.8-5.06-2.53-8.86-5.93-11.39-10.19-2.53-4.26-3.8-8.8-3.8-13.61,0-10,3.61-17.63,10.84-22.88,7.22-5.25,16.7-7.87,28.43-7.87,5.19,0,9.88.37,14.08,1.11,4.2.74,7.65,1.61,10.37,2.59v-4.08c0-7.9-2.07-13.86-6.21-17.87-4.14-4.01-9.66-6.02-16.58-6.02-5.68,0-10.59,1.17-14.73,3.52-4.14,2.35-6.7,6.3-7.69,11.86h-16.67c.74-6.54,2.99-11.98,6.76-16.3,3.77-4.32,8.49-7.53,14.17-9.63,5.68-2.1,11.73-3.15,18.15-3.15,13.09,0,22.94,3.43,29.54,10.28,6.6,6.85,9.91,15.96,9.91,27.32v27.6c0,4.45.28,7.72.83,9.82.56,2.1,1.51,3.4,2.87,3.89,1.36.5,3.21.74,5.56.74h1.3v14.45h-3.52c-6.05,0-10.99-.99-14.82-2.96-3.83-1.97-6.42-5.93-7.78-11.85-2.84,4.81-6.76,8.86-11.76,12.13-5,3.27-11.39,4.91-19.17,4.91ZM445.43,123.52c5.43,0,10.09-1.36,13.98-4.08,3.89-2.71,6.95-6.3,9.17-10.74s3.46-9.14,3.7-14.08c-2.84-.86-6.3-1.64-10.37-2.32-4.07-.68-8.15-1.02-12.23-1.02-8.4,0-14.48,1.64-18.25,4.91-3.77,3.27-5.65,7.38-5.65,12.32,0,4.32,1.7,7.9,5.09,10.74,3.39,2.84,8.24,4.26,14.54,4.26Z"/>'
+    + '<path d="M551.44,137.04c-9.14,0-17.1-2.1-23.89-6.3-6.79-4.2-12.1-9.94-15.93-17.23-3.83-7.28-5.74-15.56-5.74-24.82s1.91-17.5,5.74-24.73c3.83-7.22,9.17-12.9,16.02-17.04,6.85-4.14,14.79-6.21,23.8-6.21,7.53,0,14.17,1.51,19.91,4.54,5.74,3.03,10.16,7.26,13.24,12.69V20.54h16.67v114.28h-16.67v-15c-2.96,4.45-7.13,8.43-12.5,11.95-5.37,3.52-12.26,5.28-20.65,5.28ZM553.66,122.6c6.05,0,11.36-1.42,15.93-4.26,4.57-2.84,8.15-6.79,10.74-11.85,2.59-5.06,3.89-10.93,3.89-17.6s-1.3-12.53-3.89-17.6c-2.59-5.06-6.18-9.01-10.74-11.85-4.57-2.84-9.88-4.26-15.93-4.26s-11.24,1.42-15.93,4.26c-4.7,2.84-8.34,6.76-10.93,11.76-2.59,5-3.89,10.9-3.89,17.69s1.3,12.53,3.89,17.6c2.59,5.06,6.23,9.02,10.93,11.85,4.69,2.84,10,4.26,15.93,4.26Z"/>'
+    + '<path d="M622.75,134.82V42.95h16.67v14.45c2.1-4.82,4.94-8.55,8.52-11.21,3.58-2.65,7.96-3.98,13.15-3.98h13.71v15.56h-15.37c-3.95,0-7.44,1.11-10.47,3.33-3.03,2.22-5.37,5.77-7.04,10.65-1.67,4.88-2.5,11.33-2.5,19.36v43.71h-16.67Z"/>'
+    + '<path d="M718.51,137.04c-7.41,0-13.65-1.27-18.71-3.8-5.06-2.53-8.86-5.93-11.39-10.19-2.53-4.26-3.8-8.8-3.8-13.61,0-10,3.61-17.63,10.84-22.88,7.22-5.25,16.7-7.87,28.43-7.87,5.19,0,9.88.37,14.08,1.11,4.2.74,7.65,1.61,10.37,2.59v-4.08c0-7.9-2.07-13.86-6.21-17.87-4.14-4.01-9.66-6.02-16.58-6.02-5.68,0-10.59,1.17-14.73,3.52-4.14,2.35-6.7,6.3-7.69,11.86h-16.67c.74-6.54,2.99-11.98,6.76-16.3,3.77-4.32,8.49-7.53,14.17-9.63,5.68-2.1,11.73-3.15,18.15-3.15,13.09,0,22.94,3.43,29.54,10.28,6.6,6.85,9.91,15.96,9.91,27.32v27.6c0,4.45.28,7.72.83,9.82.56,2.1,1.51,3.4,2.87,3.89,1.36.5,3.21.74,5.56.74h1.3v14.45h-3.52c-6.05,0-10.99-.99-14.82-2.96-3.83-1.97-6.42-5.93-7.78-11.85-2.84,4.81-6.76,8.86-11.76,12.13-5,3.27-11.39,4.91-19.17,4.91ZM721.11,123.52c5.43,0,10.09-1.36,13.98-4.08,3.89-2.71,6.95-6.3,9.17-10.74,2.22-4.45,3.46-9.14,3.7-14.08-2.84-.86-6.3-1.64-10.37-2.32-4.07-.68-8.15-1.02-12.23-1.02-8.4,0-14.48,1.64-18.25,4.91-3.77,3.27-5.65,7.38-5.65,12.32,0,4.32,1.7,7.9,5.09,10.74,3.39,2.84,8.24,4.26,14.54,4.26Z"/>'
+    + '<path d="M819.64,134.82c-5.19,0-9.57-.65-13.15-1.95-3.58-1.3-6.27-3.73-8.06-7.32-1.79-3.58-2.68-8.64-2.68-15.19v-53.35h-15.93v-14.08h15.93v-22.41h16.67v22.41h25.93v14.08h-25.93v50.75c0,3.95.31,6.85.93,8.7.62,1.85,1.91,3,3.89,3.43,1.97.43,4.81.65,8.52.65h11.3v14.26h-17.41Z"/>'
+    + '</g></svg>';
+}
+const KVADRAT_LOGO_AR = 838.35 / 157.58;
+
+function loadKvadratLogo(color) {
+  return new Promise((resolve) => {
+    const svg = getKvadratLogoSVG(color);
+    const blob = new Blob([svg], {type: 'image/svg+xml'});
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = url;
+  });
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  if (typeof r === 'number') r = {tl:r, tr:r, br:r, bl:r};
+  ctx.beginPath();
+  ctx.moveTo(x + r.tl, y);
+  ctx.lineTo(x + w - r.tr, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r.tr);
+  ctx.lineTo(x + w, y + h - r.br);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r.br, y + h);
+  ctx.lineTo(x + r.bl, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r.bl);
+  ctx.lineTo(x, y + r.tl);
+  ctx.quadraticCurveTo(x, y, x + r.tl, y);
+  ctx.closePath();
+}
+
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+function drawComposition(ctx, opts) {
+  const {firstName, lastName, role, photo, logo, progress = 1} = opts;
+  const W = ctx.canvas.width;
+  const H = ctx.canvas.height;
+
+  ctx.fillStyle = C.marin;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.save();
+  ctx.fillStyle = C.lila;
+  ctx.globalAlpha = 0.35;
+  ctx.beginPath();
+  ctx.arc(W * 1.05, H * 1.08, W * 0.55, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = C.lila;
+  ctx.globalAlpha = 0.25;
+  ctx.beginPath();
+  ctx.arc(W * -0.05, H * 0.08, W * 0.22, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  const bannerT = Math.min(1, Math.max(0, (progress - 0.02) / 0.15));
+  const bannerH = 78;
+  const bannerY = 36;
+  const bannerXEnd = W - 36;
+  const bannerXStart = 36;
+  const bannerFullW = bannerXEnd - bannerXStart;
+  const bannerCurW = bannerFullW * easeOutCubic(bannerT);
+  if (bannerT > 0) {
+    ctx.save();
+    ctx.fillStyle = C.lime;
+    roundRect(ctx, bannerXStart, bannerY, bannerCurW, bannerH, 10);
+    ctx.fill();
+
+    if (bannerT > 0.55) {
+      const tA = Math.min(1, (bannerT - 0.55) / 0.45);
+      ctx.globalAlpha = tA;
+      const pulse = 0.85 + 0.15 * Math.sin(progress * Math.PI * 8);
+      ctx.fillStyle = C.rodorange;
+      ctx.beginPath();
+      ctx.arc(bannerXStart + 38, bannerY + bannerH / 2, 11 * pulse, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = C.morkgron;
+      ctx.font = '900 36px "Saira Extra Condensed", Impact, sans-serif';
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'left';
+      ctx.fillText('BREAKING  ·  KVADRAT.SE', bannerXStart + 64, bannerY + bannerH / 2 + 2);
+
+      ctx.font = '700 22px "IBM Plex Sans", Verdana, sans-serif';
+      ctx.textAlign = 'right';
+      const today = new Date().toLocaleDateString('sv-SE', {year:'numeric', month:'2-digit', day:'2-digit'});
+      ctx.fillText(today, bannerXEnd - 20, bannerY + bannerH / 2 + 2);
+    }
+    ctx.restore();
+  }
+
+  const photoT = Math.min(1, Math.max(0, (progress - 0.18) / 0.22));
+  const pSize = 420;
+  const pX = 70;
+  const pY = 160;
+  if (photoT > 0 && photo) {
+    ctx.save();
+    const cx2 = pX + pSize / 2;
+    const cy2 = pY + pSize / 2;
+    const scale = 0.82 + 0.18 * easeOutCubic(photoT);
+
+    ctx.globalAlpha = photoT;
+    ctx.translate(cx2, cy2);
+    ctx.scale(scale, scale);
+    ctx.translate(-cx2, -cy2);
+
+    // Soft offset shadow
+    ctx.fillStyle = C.lila;
+    ctx.globalAlpha = photoT * 0.5;
+    roundRect(ctx, pX + 16, pY + 16, pSize, pSize, 36);
+    ctx.fill();
+    ctx.globalAlpha = photoT;
+
+    // Lime backdrop card — this is the brand color shown behind the cut-out person
+    ctx.fillStyle = C.lime;
+    roundRect(ctx, pX, pY, pSize, pSize, 36);
+    ctx.fill();
+
+    // Clip to card and draw cut-out photo (background-removed person)
+    ctx.save();
+    roundRect(ctx, pX, pY, pSize, pSize, 36);
+    ctx.clip();
+
+    const ar = photo.naturalWidth / photo.naturalHeight;
+    let dW, dH, dX, dY;
+    if (ar >= 1) {
+      // Landscape/square — fit height, center horizontally
+      dH = pSize;
+      dW = pSize * ar;
+      dX = pX - (dW - pSize) / 2;
+      dY = pY;
+    } else {
+      // Portrait — fit width, anchor top so head is fully visible
+      dW = pSize;
+      dH = pSize / ar;
+      dX = pX;
+      dY = pY;
+    }
+    ctx.drawImage(photo, dX, dY, dW, dH);
+    ctx.restore();
+
+    ctx.restore();
+  }
+
+  const brandT = Math.min(1, Math.max(0, (progress - 0.28) / 0.18));
+  if (brandT > 0) {
+    ctx.save();
+    ctx.globalAlpha = brandT;
+
+    if (logo) {
+      const logoH = 78;
+      const logoW = logoH * KVADRAT_LOGO_AR;
+      ctx.drawImage(logo, 560, 170, logoW, logoH);
+    }
+
+    ctx.fillStyle = C.lime;
+    ctx.fillRect(560, 258, 460, 3);
+
+    ctx.restore();
+  }
+
+  const nameT = Math.min(1, Math.max(0, (progress - 0.38) / 0.16));
+  if (nameT > 0) {
+    ctx.save();
+    ctx.globalAlpha = nameT;
+
+    ctx.fillStyle = C.vit;
+    ctx.font = '900 68px "Saira Extra Condensed", Impact, sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'left';
+    ctx.fillText(firstName.toUpperCase(), 560, 280);
+    ctx.fillText(lastName.toUpperCase(), 560, 348);
+
+    ctx.fillStyle = C.ljuslila;
+    ctx.font = '500 26px "IBM Plex Sans", Verdana, sans-serif';
+    ctx.fillText(role, 560, 428);
+
+    const tagText = '↗ EGENFÖRETAGARE';
+    ctx.font = '900 28px "Saira Extra Condensed", Impact, sans-serif';
+    const tagW = ctx.measureText(tagText).width + 28;
+    ctx.fillStyle = C.lime;
+    roundRect(ctx, 560, 476, tagW, 46, 23);
+    ctx.fill();
+    ctx.fillStyle = C.morkgron;
+    ctx.textBaseline = 'middle';
+    ctx.fillText(tagText, 574, 501);
+
+    ctx.restore();
+  }
+
+  const headT = Math.min(1, Math.max(0, (progress - 0.5) / 0.28));
+  if (headT > 0) {
+    ctx.save();
+    ctx.font = '900 150px "Saira Extra Condensed", Impact, sans-serif';
+    ctx.fillStyle = C.lime;
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'left';
+
+    const line1 = 'JAG TOG';
+    const line2 = 'KLIVET.';
+    const total = line1.length + line2.length;
+    const visibleN = Math.floor(total * headT);
+    const v1 = line1.substring(0, Math.min(visibleN, line1.length));
+    const v2 = visibleN > line1.length ? line2.substring(0, visibleN - line1.length) : '';
+
+    const yTop = 640;
+    ctx.fillText(v1, 60, yTop);
+    if (v2) ctx.fillText(v2, 60, yTop + 130);
+
+    if (headT >= 1) {
+      ctx.fillStyle = C.gron;
+      ctx.fillRect(60, yTop + 270, 200, 8);
+    }
+    ctx.restore();
+  }
+
+  const sloT = Math.min(1, Math.max(0, (progress - 0.72) / 0.18));
+  const bbY = H - 100;
+  if (sloT > 0) {
+    ctx.save();
+    ctx.globalAlpha = sloT;
+    ctx.fillStyle = C.lila;
+    ctx.fillRect(0, bbY, W, 100);
+
+    ctx.fillStyle = C.vit;
+    ctx.font = '700 26px "IBM Plex Sans", Verdana, sans-serif';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    ctx.fillText('egen men inte ensam', 36, bbY + 50);
+
+    ctx.font = '900 30px "Saira Extra Condensed", Impact, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillStyle = C.lime;
+    ctx.fillText('KVADRAT.SE', W - 36, bbY + 50);
+    ctx.restore();
+  }
+}
+
+function downloadDataURL(dataURL, filename) {
+  const a = document.createElement('a');
+  a.href = dataURL;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function safeFilename(first, last) {
+  const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return slug(first) + '-' + slug(last) + '-kvadrat';
+}
+
+document.getElementById('user-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const role = document.getElementById('role').value.trim();
+
+  if (!userPhoto) { alert('Vänligen ladda upp en bild först.'); return; }
+
+  document.getElementById('form-page').style.display = 'none';
+  document.getElementById('loading').classList.add('show');
+
+  const setProgress = (pct, text) => {
+    document.getElementById('progress-bar').style.width = pct + '%';
+    if (text) document.getElementById('progress-text').textContent = text;
+  };
+
+  setProgress(5, 'Laddar typsnitt...');
+  if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+  setProgress(10, 'Förbereder logo...');
+  if (!kvadratLogoImg) kvadratLogoImg = await loadKvadratLogo(C.lime);
+
+  setProgress(15, 'Friskärar dig från bakgrunden... (kan ta 5-15 sek)');
+  await new Promise(r => setTimeout(r, 50));
+  if (!processedPhoto) {
+    try {
+      processedPhoto = await removeBackground(userPhoto);
+    } catch (err) {
+      console.warn('Background removal failed, using original photo:', err);
+      processedPhoto = userPhoto;
+    }
+  }
+
+  const opts = { firstName, lastName, role, photo: processedPhoto, logo: kvadratLogoImg };
+
+  setProgress(35, 'Renderar bild...');
+  const canvas = document.getElementById('render-canvas');
+  const ctx = canvas.getContext('2d');
+  drawComposition(ctx, {...opts, progress: 1});
+  const imageDataURL = canvas.toDataURL('image/png');
+  document.getElementById('image-preview').src = imageDataURL;
+  document.getElementById('download-image').onclick = () => {
+    downloadDataURL(imageDataURL, safeFilename(firstName, lastName) + '.png');
+  };
+
+  // Show result page immediately with PNG ready — GIF will fill in when done
+  setProgress(40, 'Visar bild — GIF genereras i bakgrunden...');
+  document.getElementById('gif-preview').alt = 'Genererar GIF, vänta...';
+  document.getElementById('gif-preview').style.background = '#D9D4FC';
+  document.getElementById('download-gif').textContent = 'GIF genereras...';
+  document.getElementById('download-gif').disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('loading').classList.remove('show');
+    document.getElementById('result-page').classList.add('show');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, 100);
+
+  await new Promise(r => setTimeout(r, 200));
+
+  // Build inline gif.worker.js as Blob URL (avoids CORS on file://)
+  let workerBlobUrl = null;
+  try {
+    const workerScriptText = await fetch('https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js').then(r => r.text());
+    const wb = new Blob([workerScriptText], {type: 'application/javascript'});
+    workerBlobUrl = URL.createObjectURL(wb);
+  } catch (err) {
+    console.warn('Worker fetch failed, falling back to single-threaded mode', err);
+  }
+
+  const gifOpts = {
+    quality: 10,
+    width: 480,
+    height: 480,
+    repeat: 0
+  };
+  if (workerBlobUrl) {
+    gifOpts.workers = 2;
+    gifOpts.workerScript = workerBlobUrl;
+  } else {
+    gifOpts.workers = 0;
+  }
+
+  const gif = new GIF(gifOpts);
+
+  const gifCanvas = document.getElementById('gif-canvas');
+  gifCanvas.width = 480;
+  gifCanvas.height = 480;
+  const gifCtx = gifCanvas.getContext('2d');
+  gifCtx.imageSmoothingEnabled = true;
+  gifCtx.imageSmoothingQuality = 'high';
+
+  const FRAMES = 18;
+  for (let i = 0; i <= FRAMES; i++) {
+    let t = i / FRAMES;
+    let progress = t < 0.85 ? (t / 0.85) : 1;
+    drawComposition(ctx, {...opts, progress});
+    gifCtx.clearRect(0, 0, 480, 480);
+    gifCtx.drawImage(canvas, 0, 0, 480, 480);
+    gif.addFrame(gifCanvas, {copy: true, delay: 100});
+    if (i % 3 === 0) {
+      await new Promise(r => setTimeout(r, 0));
+    }
+  }
+  drawComposition(ctx, {...opts, progress: 1});
+  gifCtx.drawImage(canvas, 0, 0, 480, 480);
+  gif.addFrame(gifCanvas, {copy: true, delay: 1800});
+
+  // Update preview text periodically
+  const downloadGifBtn = document.getElementById('download-gif');
+  downloadGifBtn.textContent = 'Komprimerar GIF... 0%';
+
+  gif.on('progress', (p) => {
+    downloadGifBtn.textContent = 'Komprimerar GIF... ' + Math.round(p * 100) + '%';
+  });
+  gif.on('finished', (blob) => {
+    const url = URL.createObjectURL(blob);
+    document.getElementById('gif-preview').src = url;
+    downloadGifBtn.textContent = 'Ladda ner GIF';
+    downloadGifBtn.disabled = false;
+    downloadGifBtn.onclick = () => {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = safeFilename(firstName, lastName) + '.gif';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    };
+
+    // Re-render clean static image (canvas was used as render buffer)
+    drawComposition(ctx, {...opts, progress: 1});
+    document.getElementById('image-preview').src = canvas.toDataURL('image/png');
+  });
+  // Add a safety timeout
+  let timeoutId = setTimeout(() => {
+    if (downloadGifBtn.disabled) {
+      downloadGifBtn.textContent = 'GIF tog för lång tid — testa igen';
+      downloadGifBtn.disabled = false;
+      downloadGifBtn.onclick = () => window.location.reload();
+    }
+  }, 60000);
+  gif.on('finished', () => clearTimeout(timeoutId));
+
+  try {
+    gif.render();
+  } catch (err) {
+    console.error('GIF render failed:', err);
+    downloadGifBtn.textContent = 'GIF misslyckades — bilden funkar dock!';
+    downloadGifBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
