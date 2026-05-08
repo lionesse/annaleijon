@@ -325,8 +325,8 @@
       </div>
       <div class="form-group">
         <label for="citat">Citat</label>
-        <input type="text" id="citat" required value="Jag tog klivet." placeholder="Max 30 tecken">
-        <div class="char-count"><span id="citat-count">15</span> / 30 <span id="citat-error" style="display:none;color:var(--rodorange);font-weight:700;margin-left:8px;">För långt — max 30 tecken</span></div>
+        <input type="text" id="citat" required value="Jag tog klivet." placeholder="Max 70 tecken">
+        <div class="char-count"><span id="citat-count">15</span> / 70 <span id="citat-error" style="display:none;color:var(--rodorange);font-weight:700;margin-left:8px;">För långt — max 70 tecken</span></div>
       </div>
       <div class="form-group">
         <label for="photo">Ladda upp en proffsig bild på dig</label>
@@ -429,7 +429,7 @@ roleInput.addEventListener('input', () => {
   roleCount.parentElement.classList.toggle('warn', roleInput.value.length >= 38);
 });
 
-const CITAT_MAX = 30;
+const CITAT_MAX = 70;
 const citatInput = document.getElementById('citat');
 const citatCount = document.getElementById('citat-count');
 const citatError = document.getElementById('citat-error');
@@ -505,7 +505,7 @@ function roundRect(ctx, x, y, w, h, r) {
 
 function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
-function fitHeadlineText(ctx, text, maxWidth, maxLines, baseFontSize, minFontSize) {
+function fitHeadlineText(ctx, text, maxWidth, maxLines, baseFontSize, minFontSize, maxHeight) {
   const tryFit = (fontSize) => {
     ctx.font = '900 ' + fontSize + 'px "Saira Extra Condensed", Impact, sans-serif';
     const words = text.split(/\s+/).filter(Boolean);
@@ -522,11 +522,15 @@ function fitHeadlineText(ctx, text, maxWidth, maxLines, baseFontSize, minFontSiz
     }
     if (cur) lines.push(cur);
     const allFit = lines.every(l => ctx.measureText(l).width <= maxWidth);
-    return { lines: lines.length ? lines : [text], fontSize: fontSize, allFit: allFit };
+    const lh = Math.round(fontSize * 0.87);
+    const totalH = lines.length * lh;
+    return { lines: lines.length ? lines : [text], fontSize: fontSize, allFit: allFit, totalH: totalH };
   };
-  for (let fs = baseFontSize; fs >= minFontSize; fs -= 6) {
+  for (let fs = baseFontSize; fs >= minFontSize; fs -= 4) {
     const r = tryFit(fs);
-    if (r.lines.length <= maxLines && r.allFit) return r;
+    const fitsLines = r.lines.length <= maxLines;
+    const fitsHeight = !maxHeight || r.totalH <= maxHeight;
+    if (fitsLines && r.allFit && fitsHeight) return r;
   }
   return tryFit(minFontSize);
 }
@@ -696,7 +700,10 @@ function drawComposition(ctx, opts) {
 
     const text = (citat || 'Jag tog klivet.').toUpperCase();
     const maxWidth = W - 120;
-    const fitted = fitHeadlineText(ctx, text, maxWidth, 2, 150, 70);
+    const yTopRef = 640;
+    const sloganStart = H - 100;
+    const maxCitatHeight = sloganStart - yTopRef - 50; // utrymme för underlinje + luft till slogan
+    const fitted = fitHeadlineText(ctx, text, maxWidth, 5, 150, 36, maxCitatHeight);
     const lines = fitted.lines;
     const fontSize = fitted.fontSize;
     const lineHeight = Math.round(fontSize * 0.87);
