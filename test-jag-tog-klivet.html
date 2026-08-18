@@ -331,7 +331,7 @@
       <div class="form-group">
         <label for="photo">Ladda upp en proffsig bild på dig</label>
         <input type="file" id="photo" accept="image/*" required>
-        <img id="photo-preview" class="photo-preview" alt="Förhandsvisning">
+        <img id="photo-preview" class="photo-preview" alt="Förhandsvisning" fetchpriority="high" decoding="async">
       </div>
       <button type="submit" class="cta" id="submit-btn">Generera min Kvadrat-bild</button>
     </form>
@@ -355,12 +355,12 @@
   <div class="result-grid">
     <div class="result-card">
       <h3>Bild (PNG)</h3>
-      <div class="preview-wrapper"><img id="image-preview" alt="Genererad bild"></div>
+      <div class="preview-wrapper"><img id="image-preview" alt="Genererad bild" loading="lazy" decoding="async"></div>
       <button class="download-btn" id="download-image">Ladda ner bild</button>
     </div>
     <div class="result-card">
       <h3>GIF (animerad)</h3>
-      <div class="preview-wrapper"><img id="gif-preview" alt="Genererad GIF"></div>
+      <div class="preview-wrapper"><img id="gif-preview" alt="Genererad GIF" loading="lazy" decoding="async"></div>
       <button class="download-btn" id="download-gif">Ladda ner GIF</button>
     </div>
   </div>

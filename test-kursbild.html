@@ -177,7 +177,7 @@
       <div class="form-group">
         <label for="photo">Bild på läraren</label>
         <input type="file" id="photo" accept="image/*" required>
-        <img id="photo-preview" class="photo-preview" alt="">
+        <img id="photo-preview" class="photo-preview" alt="" fetchpriority="high" decoding="async">
       </div>
 
       <button type="submit" class="cta" id="submit-btn">Generera kursbild</button>
@@ -199,7 +199,7 @@
     <p>Ladda ner och dela på LinkedIn &amp; Instagram</p>
   </div>
   <div class="result-card">
-    <div class="preview-wrapper"><img id="image-preview" alt="Genererad kursbild"></div>
+    <div class="preview-wrapper"><img id="image-preview" alt="Genererad kursbild" loading="lazy" decoding="async"></div>
     <button class="download-btn" id="download-image">Ladda ner bild (PNG)</button>
   </div>
   <div class="restart"><button onclick="window.location.reload()">← Generera en till</button></div>
