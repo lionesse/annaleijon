@@ -398,6 +398,12 @@ label {
 img {
   max-width: 100%;
 }
+/* Bilder har width/height i HTML:en så webbläsaren kan reservera rätt plats
+   direkt (mindre layouthopp = bättre CLS-värde hos Google). height: auto gör
+   att proportionen behålls när bilden krymps ner av max-width ovan. */
+img[width][height] {
+  height: auto;
+}
 .btn {
   font-size: 12px;
   font-size: 0.75rem;
