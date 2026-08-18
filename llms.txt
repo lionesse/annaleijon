@@ -1,0 +1,61 @@
+# Anna Leijon
+
+> Anna Leijon skriver om egenföretagande, frilansande och tech på den svenska
+> marknaden. Hon är civilingenjör från KTH, har arbetat som frilansande
+> produktledare inom systemutveckling, och driver Roawr AB. Hon är författare
+> till boken "Bli Egen" (2022) om att bli egenföretagare i Sverige, samt
+> grundare av Flowby (mobila kösystem) och tevarumärket Téamo. Innehållet på
+> annaleijon.se är på svenska och engelska och riktar sig främst till personer
+> i Sverige som funderar på att bli frilanskonsult eller egenföretagare.
+
+Sajten består till största delen av långa, faktatäta artiklar och löpande
+uppdaterade listor. Listorna nedan är de mest citerade delarna och underhålls
+kontinuerligt. Sifferexempel och skattesatser gäller det år som anges i
+artikeln — kontrollera alltid aktuella belopp hos Skatteverket.
+
+## Guider om att bli egenföretagare
+
+- [Frilansarguiden – hur du blir frilansare](https://annaleijon.se/frilansarguiden-hur-du-blir-frilansare.html): Steg-för-steg-guide till att starta eget som konsult i Sverige. Sajtens mest lästa artikel.
+- [Anställd vs frilanskonsult – en jämförelse i siffror](https://annaleijon.se/anst%C3%A4lld-vs-frilanskonsult-en-j%C3%A4mf%C3%B6relse-i-siffror.html): Räkneexempel som jämför lön som anställd mot fakturering som egenföretagare.
+- [Vad är en konsult, frilanskonsult och egenföretagare](https://annaleijon.se/vad-ar-en-konsult-frilanskonsult-och-egenforetagare.html): Begreppsdefinitioner och hur de olika uppläggen skiljer sig.
+- [Anställd vs frilanskonsult – vilken bakgrund behöver du ha](https://annaleijon.se/anstalld-vs-frilanskonsult-vilken-bakgrund-behover-du-ha.html): Vilken erfarenhet som krävs innan man går över till att frilansa.
+- [CV-mall för konsulter och frilansare](https://annaleijon.se/cv-mall-for-konsulter-och-frilansare.html): Nedladdningsbar CV-mall med instruktioner.
+- [Hur du lyckas med intervjun för ett konsultuppdrag](https://annaleijon.se/hur-du-lyckas-med-intervjun-for-ett-konsultuppdrag.html): Förberedelser inför kundintervju.
+
+## Listor och jämförelser
+
+- [Lista på konsultmäklare i Sverige](https://annaleijon.se/lista-pa-konsultmaklare-i-stockholm.html): Löpande uppdaterad förteckning över konsultmäklare och förmedlare i Sverige.
+- [Konsultmäklare – betyg och omdömen](https://annaleijon.se/konsultmaklare-i-sverige-betyg-omdome.html): Omdömen om konsultmäklare, insamlade från frilansare.
+- [Lista på banker med företagskonto](https://annaleijon.se/lista-pa-banker-foretagskonto.html): Jämförelse av företagskonton för småföretagare.
+- [Bokföringsprogram](https://annaleijon.se/bokforingsprogram.html): Jämförelse av bokföringsprogram för egenföretagare.
+- [Coworking i Stockholms innerstad](https://annaleijon.se/coworking-stockholm-innerstad.html): Förteckning över coworking-utrymmen med priser.
+- [Förkortningar inom IT](https://annaleijon.se/f%C3%B6rkortningar-inom-it.html): Ordlista över vanliga IT-förkortningar.
+
+## Skatt och ekonomi för egenföretagare
+
+- [Företagsskatter – översikt](https://annaleijon.se/foretagsskatter.html): Ingång till en artikelserie om de skatter ett svenskt aktiebolag betalar.
+- [Lönekalkylatorn – räkna ut lön efter skatt](https://annaleijon.se/lonekalkylatorn-rakna-ut-lon-efter-skatt.html): Kalkylator för lön efter skatt.
+- [Att göra sin årsredovisning som nybliven egenföretagare](https://annaleijon.se/att-g%C3%B6ra-sin-%C3%A5rsredovisning-som-nybliven-egenf%C3%B6retagare.html): Praktisk genomgång av första årsredovisningen.
+- [Hur du skaffar direktpension](https://annaleijon.se/hur-du-skaffar-direktpension.html): Om direktpension som pensionslösning för företagare.
+- [Direktpension eller tjänstepension](https://annaleijon.se/hur-sparar-du-bast-till-pensionen-som-egenforetagare-med-direktpension-eller-tjanstepension.html): Jämförelse av pensionssparande för egenföretagare.
+
+## Om Anna Leijon
+
+- [Om och kontakt](https://annaleijon.se/contact.html): Bakgrund, uppdrag och kontaktuppgifter.
+- [Boken "Bli Egen"](https://annaleijon.se/kop-boken-bli-egen-frilansare-egenforetagare.html): Om boken och var den köps.
+- [Alla artiklar](https://annaleijon.se/writings.html): Fullständig artikelförteckning.
+- [Success stories](https://annaleijon.se/success-stories.html): Återkoppling från läsare som blivit egenföretagare.
+- [Videor](https://annaleijon.se/videos.html): Föredrag, poddavsnitt och medverkanden.
+
+## Engelskspråkigt innehåll
+
+- [How to start freelancing and becoming self-employed](https://annaleijon.se/how-to-start-freelancing-and-becoming-self-employed.html): English introduction to going freelance.
+- [Freelance consultant – what it is and its different setups](https://annaleijon.se/freelance-consultant-what-it-is-and-its-different-setups.html): The different legal and contractual setups for consultants.
+- [Employee vs freelancer – when to hire](https://annaleijon.se/employee-vs-freelancer-when-to-hire.html): Written for companies deciding between hiring and contracting.
+- [How to succeed in the interview for a consulting assignment](https://annaleijon.se/how-to-succeed-in-the-interview-for-a-consulting-assignment.html): Preparing for a client interview.
+
+## Optional
+
+- [Sitemap](https://annaleijon.se/sitemap.xml): Fullständig sidkarta.
+- [Memes](https://annaleijon.se/memes.html): Memes om egenföretagande och konsultlivet.
+- [Forumet Frilans & Tech](https://annaleijon.discourse.group/): Öppet diskussionsforum om frilansande och tech.
