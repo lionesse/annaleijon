@@ -1,0 +1,70 @@
+# Skickar ändrade sidor till IndexNow (Bing, Yandex, Seznam m.fl.) varje gång
+# HTML-filer, llms.txt eller sitemap.xml ändras på master.
+name: IndexNow
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - '**.html'
+      - 'llms.txt'
+      - 'sitemap.xml'
+  workflow_dispatch: {}   # gör att du kan köra den manuellt under fliken Actions
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Vänta in GitHub Pages
+        run: sleep 90   # så att Bing hämtar den nya versionen, inte den gamla
+
+      - name: Skicka ändrade adresser till IndexNow
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, urllib.parse, urllib.request
+
+          HOST = "annaleijon.se"
+          KEY = "f6912bd5bxqgnrbek2b32dszxa3sbfcq"
+
+          before, after = os.environ.get("BEFORE", ""), os.environ["AFTER"]
+          if os.environ["EVENT"] == "workflow_dispatch" or not before or set(before) == {"0"}:
+              # Manuell körning: skicka alla sidor i sitemap.xml
+              import re
+              xml = open("sitemap.xml", encoding="utf-8").read()
+              urls = re.findall(r"<loc>(.*?)</loc>", xml)
+          else:
+              out = subprocess.run(
+                  ["git", "-c", "core.quotepath=off", "diff", "--name-only", "--diff-filter=AMR", before, after],
+                  capture_output=True, text=True, check=True).stdout.splitlines()
+              files = [f for f in out if f.endswith(".html") or f in ("llms.txt", "sitemap.xml")]
+              files = [f for f in files if not f.startswith(("test-", "assets/"))]
+              urls = []
+              for f in files:
+                  path = "" if f == "index.html" else urllib.parse.quote(f)
+                  urls.append(f"https://{HOST}/{path}")
+
+          if not urls:
+              print("Inga ändrade sidor att skicka.")
+              raise SystemExit(0)
+
+          body = json.dumps({
+              "host": HOST,
+              "key": KEY,
+              "keyLocation": f"https://{HOST}/{KEY}.txt",
+              "urlList": urls[:10000],
+          }).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json; charset=utf-8"})
+          with urllib.request.urlopen(req) as r:
+              print("IndexNow svarade", r.status, "för", len(urls), "adresser:")
+          for u in urls:
+              print(" ", u)
+          PY
