@@ -942,3 +942,13 @@ td.container-premium > div {
     text-align: center;
   }
 }
+
+/* Mobil: när man drar förbi sidans botten (iOS-studsen) syns sidfotens gråa färg i stället för vitt */
+html {
+  background-color: #ececec;
+}
+body {
+  background-color: #ffffff;
+  height: auto;
+  min-height: 100%;
+}
