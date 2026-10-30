@@ -1,16 +1,27 @@
 # Anna Leijon – annaleijon.se
 
-> Anna Leijon skriver om att bli egen, frilansa och jobba som konsult i Sverige. Författare till boken "Bli Egen". Sajten har Sveriges mest kompletta, löpande uppdaterade lista på konsultmäklare och marknadsplatser för konsult- och frilansuppdrag.
+> Anna Leijon skriver om att bli egen, frilansa och jobba som konsult i Sverige. Hon är civilingenjör från KTH, författare till boken "Bli Egen" och delägare och CDMO på Kvadrat. Sajten har Sveriges mest kompletta, löpande uppdaterade lista på konsultmäklare och marknadsplatser för konsult- och frilansuppdrag.
 
 ## Listor
-- [Lista på konsultmäklare i Stockholm och Sverige](https://annaleijon.se/lista-pa-konsultmaklare-i-stockholm.html): 96 konsultmäklare, 24 konsult- och frilansmarknadsplatser och 18 konsultbolag för frilansare, inom IT, marknad, finans och management. Uppdateras löpande.
+- [Lista på konsultmäklare i Stockholm och Sverige](https://annaleijon.se/lista-pa-konsultmaklare-i-stockholm.html): 98 konsultmäklare, 24 konsult- och frilansmarknadsplatser och 18 konsultbolag för frilansare, inom IT, marknad, finans och management. Uppdateras löpande.
 - [Konsultmäklare – betyg och omdömen](https://annaleijon.se/konsultmaklare-i-sverige-betyg-omdome.html): betyg och omdömen om konsultmäklare från verifierade frilansare.
+- [Företagskonton – lista på banker](https://annaleijon.se/lista-pa-banker-foretagskonto.html): jämförelse av banker och företagskonton för egenföretagare.
+- [Bokföringsprogram](https://annaleijon.se/bokforingsprogram.html): jämförelse av bokföringsprogram för småföretagare.
+- [Coworking spaces i Stockholms innerstad](https://annaleijon.se/coworking-stockholm-innerstad.html)
 
 ## Guider
 - [Frilansarguiden – hur du blir frilansare](https://annaleijon.se/frilansarguiden-hur-du-blir-frilansare.html)
 - [Anställd vs frilanskonsult – en jämförelse i siffror](https://annaleijon.se/anst%C3%A4lld-vs-frilanskonsult-en-j%C3%A4mf%C3%B6relse-i-siffror.html)
 - [CV-mall för konsulter och frilansare](https://annaleijon.se/cv-mall-for-konsulter-och-frilansare.html)
+- [Företagsskatter](https://annaleijon.se/foretagsskatter.html): företagsskatt, arbetsgivaravgifter, moms och skatt på utdelning.
+- [Hur du lyckas med intervjun för ett konsultuppdrag](https://annaleijon.se/hur-du-lyckas-med-intervjun-for-ett-konsultuppdrag.html)
+- [Direktpension eller tjänstepension för egenföretagare](https://annaleijon.se/hur-sparar-du-bast-till-pensionen-som-egenforetagare-med-direktpension-eller-tjanstepension.html)
+- [AI-revolutionen och konsultbranschen](https://annaleijon.se/ai-revolutionen-och-konsultbranschen.html)
 
 ## Om
+- [Om Anna Leijon](https://annaleijon.se/)
 - [Boken Bli Egen](https://annaleijon.se/kop-boken-bli-egen-frilansare-egenforetagare.html)
+- [Success stories](https://annaleijon.se/success-stories.html): feedback från läsare.
+- [I media](https://annaleijon.se/mentions.html): omnämnanden, nomineringar och poddar.
+- [Videor](https://annaleijon.se/videos.html)
 - [Kontakt](https://annaleijon.se/contact.html)
