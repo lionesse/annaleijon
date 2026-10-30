@@ -121,7 +121,7 @@
 				<article class="post">
 					<header class="entry-header">
 						<div class="entry-meta"> 
-							<span class="posted-on"><time class="entry-date published" date="2023-03-07">Senast uppdaterad i mars 2023</time></span>			
+							<span class="posted-on"><time class="entry-date published" datetime="2026-10-30">Senast uppdaterad: 2026-10-30</time></span>			
 						</div>
 						<h1 class="entry-title">Lönekalkylatorn - räkna ut lön efter skatt</h1>
 					</header>
@@ -133,7 +133,8 @@
 
             <form id="form1" onsubmit="return calculate(event);">
               <p>Din månadslön före skatt (bruttolön): </p>
-              <input type="text" value="40000" name="var1"><br>
+              <input type="text" inputmode="numeric" value="40000" name="var1" aria-label="Månadslön före skatt"><br>
+              <label style="font-weight:normal;margin-top:1em;"><input type="checkbox" name="kyrka"> Jag är medlem i Svenska kyrkan</label><br>
               <br>
               <input type="submit" value="Beräkna" class="button"> <!-- inga mellanslag, punkter, kommatecken i inputen -->
             </form>
@@ -202,27 +203,11 @@
 						    <td><p id="result3"></p></td> 
 						  </tr>
 						  <tr>
-						    <td>Inkomstskatt (29,82 %)</td> 
+						    <td>Preliminärskatt enligt skattetabell 31, kolumn 1 (Stockholm 2026). Inkluderar kommunal- och regionskatt, statlig inkomstskatt, begravningsavgift, public service-avgift och jobbskatteavdrag</td> 
 						    <td><p id="result4"></p></td> 
 						  </tr>
 						  <tr>
-						    <td>Statlig inkomstskatt</td> 
-						    <td><p id="result8"></p></td> 
-						  </tr>
-						  <tr>
-						    <td>Begravningsavgift (0,065 %)</td> 
-						    <td><p id="result5"></p></td> 
-						  </tr>
-						  <tr>
-						    <td>Jobbskatteavdrag</td>
-						    <td><p id="result10"></p></td> 
-						  </tr>
-						  <tr>
-						    <td>Public service-avgift</td>
-						    <td><p id="result9"></p></td> 
-						  </tr>
-						  <tr>
-						    <td>Kyrkoavgift - medlem i kyrkan (1 %)</td> 
+						    <td>Kyrkoavgift - om du är medlem i Svenska kyrkan (förenklat, cirka 1 %)</td> 
 						    <td><p id="result14"></p></td>
 						  </tr>
 						  <tr>
@@ -293,13 +278,13 @@
 
 <ul>
     <li>
-        Beräkningen baseras på 2023 års siffror och gäller för ersättningsformen lön.
+        Beräkningen baseras på 2026 års siffror och gäller för ersättningsformen lön.
     </li>
     <li>
-        Om arbetstagaren: du har inte fyllt 66 år vid inkomstårets ingång, du är medlem i kyrkan och du är skriven i Stockholms kommun och betalar således inkomstskatt baserat på skattetabell 30, kolumn 1 som är 29,82 % samt begravningsavgift på 0,065 %.
+        Om arbetstagaren: du har inte fyllt 66 år vid inkomstårets ingång, lönen är din huvudinkomst och du är skriven i Stockholms kommun. Skatten räknas därför enligt Skatteverkets skattetabell 31, kolumn 1, för månadslön 2026.
     </li>
     <li>
-        Om arbetsgivaren: för enkelhetens skull har jag inte tagit med avsättning till pensionen, semestertillägg eventuell försäkringskostnad och särskild löneskatt i arbetsgivarens utgift och antar också att arbetsgivaren driver ett aktiebolag.
+        Om arbetsgivaren: för enkelhetens skull har jag inte tagit med avsättning till pensionen, semestertillägg, eventuell försäkringskostnad och särskild löneskatt i arbetsgivarens utgift och antar också att arbetsgivaren driver ett aktiebolag.
     </li>
 </ul>
             <p>Källor:</p>
@@ -307,25 +292,13 @@
 
 <ul>
     <li>
-        Sociala avgifter (arbetsgivaravgifter) - beror på din ålder bland annat. Totalt för inkomståret 2023 är arbetsgivaravgiften för de flesta anställda 31,42% (vilket jag också utgår ifrån). Det finns dock vissa undantag, såsom lägre avgifter för både äldre och yngre i allmänhet samt tidsbegränsad nedsättning av avgifterna under exempelvis Covid i synnerhet, men läs mer på: <a target="_blank" href="https://annaleijon.se/foretagsskatter-arbetsgivaravgifter.html">annaleijon.se/foretagsskatter-arbetsgivaravgifter</a>.
+        Sociala avgifter (arbetsgivaravgifter) - beror på din ålder bland annat. För de flesta anställda är arbetsgivaravgiften 31,42 % 2026 (vilket jag också utgår ifrån). För unga mellan 19 och 23 år är den tillfälligt sänkt till 20,81 % på lön upp till 25 000 kr i månaden från 1 april 2026 till 30 september 2027 och för den som fyllt 67 år betalas enbart ålderspensionsavgiften på 10,21 %. Läs mer på: <a target="_blank" href="https://annaleijon.se/foretagsskatter-arbetsgivaravgifter.html">annaleijon.se/foretagsskatter-arbetsgivaravgifter</a>.
     </li>
     <li>
-        Inkomstskatt - beror på var du bor. Min beräkning baseras på att du bor i Stockholm, men läs mer på: <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a> och ta fram din egen inkomstskatt baserat på din kommun här: <a target="_blank" rel="nofollow noreferrer noopener" href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/askattsedelochskattetabeller.4.18e1b10334ebe8bc80005221.html">skatteverket.se</a>.
+        Preliminärskatt - beror på var du bor och hur mycket du tjänar. Skattetabellen för din kommun tar hänsyn till kommunal- och regionskatt, statlig inkomstskatt (20 % på den del av den beskattningsbara inkomsten som överstiger 643 000 kr per år 2026, vilket motsvarar en brytpunkt på cirka 660 400 kr i årslön), begravningsavgift, public service-avgift och jobbskatteavdrag. I Stockholm är kommunal- och regionskatten 30,55 % och begravningsavgiften 0,07 % 2026. Över 80 000 kr i månaden anges skatten i tabellen som en procentsats av lönen. Den skatt som dras på lönen är preliminär, och den slutliga skatten räknas ut i deklarationen. Läs mer på: <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a> och ta fram din egen skattetabell baserat på din kommun här: <a target="_blank" rel="nofollow noreferrer noopener" href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/askattsedelochskattetabeller.4.18e1b10334ebe8bc80005221.html">skatteverket.se</a>.
     </li>
     <li>
-        Statlig inkomstskatt - beror på din lön. Den är på 20 %, före grundavdrag, och betalas av de som tjänar mer än 613 900 kr (ungefär 51 158 kr i månaden) brutto och som inte fyllt 66 år vid inkomstårets ingång. Betalas enbart på beloppet de tjänar över 613 900 kr. Jag beräknar den här korrekt för de som inte fyllt 66 år vid inkomstårets ingång. Läs mer på: <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a>.
-    </li>
-    <li>
-        Begravningsavgift - beror på var du bor. Min beräkning baseras på att du bor i Stockholm, men läs mer på: <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a>.
-    </li>
-    <li>
-        Jobbskatteavdraget - beror på din lön. Eftersom den här beräkningen är så omständlig görs antagandet i min beräkning att jobbskatteavdraget är 0 kr för löner under 35 3350 och över 59 238 kr. Där emellan är jobbskatteavdraget 3 016 kr, vilket är korrekt, men för löner under och över växer och avtar stödet snarare linjärlikt än binärt (som jag antagit), men läs mer på <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a> och <a target="_blank" rel="nofollow noreferrer noopener" href="https://www.ekonomifakta.se/fakta/skatter/skatt-pa-arbete/jobbskatteavdraget/#:~:text=Jobbskatteavdraget%20%C3%A5r%202023&text=Ber%C3%A4kningarna%20baseras%20p%C3%A5%20en%20genomsnittlig,m%C3%A5naden%20under%202023%20genom%20jobbskatteavdraget.">ekonomifakta.se</a>.
-    </li>
-    <li>
-        Public service-avgift - beror på din lön. Den här beräkningen är korrekt. Läs mer på <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a> och <a target="_blank" rel="nofollow noreferrer noopener" href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/askattsedelochskattetabeller/publicserviceavgift.4.22501d9e166a8cb399f31dd.html">skatteverket.se</a>.
-    </li>
-    <li>
-        Kyrkoavgiften - beror på om du är medlem, vilken församling du är medlem i samt hur hög din inkomst är. Den brukar dock vara på omkring 1 % av inkomsten från arbete eller pension (vilket jag också antar, men vilket alltså inte nödvändigtvis är korrekt). Läs mer på <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a>.
+        Kyrkoavgiften - beror på om du är medlem, vilken församling du är medlem i samt hur hög din inkomst är. Den brukar dock vara på omkring 1 % av inkomsten från arbete eller pension (vilket jag också antar om du kryssar i rutan, men vilket alltså inte nödvändigtvis är korrekt). Läs mer på <a target="_blank" href="https://annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon.html">annaleijon.se/foretagsskatter-avdragen-skatt-pa-utbetald-lon</a>.
     </li>
 </ul>
 						<br/>
@@ -337,7 +310,7 @@
 			<br>
             <p>Jag heter Anna Leijon och har skrivit flera artiklar på ämnena frilans, egenföretagande och tech. Läs gärna dem också om du vill - exempelvis <a target="_blank" href="https://annaleijon.se/frilansarguiden-hur-du-blir-frilansare.html">Frilansarguiden</a>, <a target="_blank" href="https://annaleijon.se/cv-mall-for-konsulter-och-frilansare.html">CV-mall för konsulter och frilansare</a> och <a target="_blank" href="https://annaleijon.se/anst%C3%A4lld-vs-frilanskonsult-en-j%C3%A4mf%C3%B6relse-i-siffror.html">Anställd vs frilanskonsult - en jämförelse i siffror</a>. Till följd av det har många hört av sig till mig och efterfrågat en lönesnurra, bland annat. Därför har jag byggt den här lönekalkylatorn och planerar att publicera fler längre fram.</p>
 
-            <p>Jag förbättrar gärna lönekalkylatorn om efterfrågan finns (som exempelvis att implementera stöd för olika kommunalskatter, göra medlem i kyrkan valfri samt beräkna det korrekta jobbskatteavdraget). Maila gärna mig i så fall och om du har feedback eller input på: anna@annaleijon.com. Om du däremot har frågor - ställ gärna dem <a target="_blank" rel="nofollow noreferrer noopener" href="https://annaleijon.discourse.group/">här i mitt forum</a>, tack. Jag vill också passa på att tacka <a target="_blank" href="https://lustig.se/">Joakim Lustig</a> för hjälpen med att sätta upp grunden för kalkylatorn i Javascript.</p>
+            <p>Jag förbättrar gärna lönekalkylatorn om efterfrågan finns (som exempelvis att implementera stöd för olika kommuner och åldrar). Maila gärna mig i så fall och om du har feedback eller input på: anna@annaleijon.com. Om du däremot har frågor - ställ gärna dem <a target="_blank" rel="nofollow noreferrer noopener" href="https://annaleijon.discourse.group/">här i mitt forum</a>, tack. Jag vill också passa på att tacka <a target="_blank" href="https://lustig.se/">Joakim Lustig</a> för hjälpen med att sätta upp grunden för kalkylatorn i Javascript.</p>
             <p>/Anna Leijon</p>
 						<br/>
 						<br/>
@@ -501,94 +474,58 @@
 </script>
 
 <script>
+  // Skattetabell 31, kolumn 1, inkomstår 2026 (Skatteverket). Månadslön, skatteavdrag i kronor upp till 80 000 kr.
+  // Rad 0: 1-2 000 kr, rad 1-180: steg om 100 kr upp till 20 000 kr, rad 181-480: steg om 200 kr upp till 80 000 kr.
+  var tabell31 = [0,150,152,162,173,183,194,204,215,217,227,238,248,259,269,272,282,293,303,314,324,326,337,347,358,368,379,381,391,402,412,422,432,442,444,454,464,474,484,494,496,506,516,526,536,546,548,558,568,578,588,598,600,610,624,644,663,683,702,722,741,760,780,799,819,838,857,877,896,916,935,954,974,993,1013,1032,1051,1071,1090,1110,1129,1148,1168,1187,1207,1226,1245,1265,1284,1304,1323,1342,1362,1381,1401,1420,1439,1459,1478,1498,1517,1537,1556,1575,1595,1614,1634,1653,1672,1692,1711,1731,1750,1769,1789,1808,1828,1847,1866,1885,1904,1922,1941,1960,1978,1997,2016,2034,2053,2072,2090,2109,2128,2147,2165,2184,2203,2221,2240,2259,2278,2301,2323,2346,2369,2392,2415,2437,2460,2483,2506,2529,2551,2574,2597,2620,2643,2665,2688,2711,2734,2757,2779,2802,2825,2848,2871,2893,2916,2939,2962,2985,3007,3030,3053,3076,3099,3121,3144,3167,3190,3235,3281,3327,3372,3418,3463,3509,3555,3600,3646,3691,3737,3783,3828,3874,3921,3968,4015,4063,4110,4157,4204,4252,4299,4346,4393,4441,4488,4535,4582,4630,4677,4724,4771,4819,4866,4913,4960,5008,5055,5102,5149,5197,5244,5291,5338,5386,5433,5480,5527,5575,5622,5669,5716,5764,5811,5858,5905,5953,6000,6047,6094,6142,6189,6236,6283,6331,6378,6425,6472,6520,6567,6614,6661,6709,6756,6803,6850,6898,6945,6992,7039,7087,7134,7181,7228,7276,7323,7370,7417,7465,7512,7559,7606,7654,7701,7748,7795,7842,7900,7962,8024,8086,8148,8210,8272,8334,8396,8458,8520,8582,8644,8706,8768,8830,8892,8954,9016,9078,9140,9202,9264,9326,9388,9450,9512,9574,9636,9698,9760,9822,9884,9946,10008,10070,10132,10194,10256,10318,10380,10442,10504,10566,10628,10690,10752,10814,10876,10938,11000,11062,11124,11186,11248,11310,11372,11434,11496,11558,11620,11682,11744,11806,11868,11930,11992,12054,12116,12178,12240,12302,12364,12426,12488,12550,12646,12748,12850,12952,13054,13156,13258,13360,13462,13564,13666,13768,13870,13972,14074,14176,14278,14380,14482,14584,14686,14788,14890,14992,15094,15196,15298,15400,15502,15604,15706,15808,15910,16012,16114,16216,16318,16420,16522,16624,16726,16828,16930,17032,17134,17236,17338,17440,17542,17644,17746,17848,17950,18052,18154,18256,18358,18460,18562,18664,18766,18868,18970,19072,19174,19276,19378,19480,19582,19684,19786,19888,19990,20092,20194,20296,20398,20500,20602,20704,20806,20908,21010,21112,21214,21316,21418,21520,21622,21724,21826,21928,22030,22132,22234,22336,22438,22540,22642,22744,22846,22948,23050,23152,23254,23356,23458,23560,23662,23764,23866,23968,24070,24172,24274,24376,24478,24580,24682,24784,24886,24988,25090,25192,25294];
+  // Över 80 000 kr: procentsats av lönen (från och med beloppet i första kolumnen)
+  var tabell31procent = [[80001,32],[83801,33],[88601,34],[93801,35],[100001,36],[106801,37],[114801,38],[124001,39],[134801,40],[147601,41],[163201,42],[182401,43],[206601,44],[238401,45],[281801,46],[344401,47],[443001,48],[620201,49],[1033601,50]];
+
+  function preliminarskatt(lon) {
+    if (lon <= 2000) return 0;
+    if (lon <= 20000) return tabell31[Math.ceil((lon - 2000) / 100)];
+    if (lon <= 80000) return tabell31[180 + Math.ceil((lon - 20000) / 200)];
+    var procent = 32;
+    for (var i = 0; i < tabell31procent.length; i++) {
+      if (lon >= tabell31procent[i][0]) procent = tabell31procent[i][1];
+    }
+    return Math.floor(lon * procent / 100);
+  }
+
+  function kr(x) {
+    return Math.round(x).toLocaleString("sv-SE") + " kr";
+  }
+
   function calculate(e) {
     e.preventDefault();
-    var result0 = document.getElementById("result0"); //bruttolön per månad
-    var result01 = document.getElementById("result01"); //bruttolön per år
-    var result = document.getElementById("result"); //nettolön per månad
-    var result2 = document.getElementById("result2"); //nettolön per år
-    var result3 = document.getElementById("result3"); //sociala avgifter
-    var result4 = document.getElementById("result4"); //inkomstskatt
-    var result5 = document.getElementById("result5"); //begravningsavgift
-    var result6 = document.getElementById("result6"); //summa skatter mm
-    var result7 = document.getElementById("result7"); //procent skatter mm
-    var result8 = document.getElementById("result8"); //statlig inkomstskatt
-    var result9 = document.getElementById("result9"); //public service-avgift
-    var result10 = document.getElementById("result10"); //jobbskatteavdraget
-    var result11 = document.getElementById("result11"); //arbetstagaren betalar i skatt mm
-    var result12 = document.getElementById("result12"); //arbetsgivaren betalar för den anställde
-    var result13 = document.getElementById("result13"); //arbetsgivaren betalar i avgift för den anställde
-    var result14 = document.getElementById("result14"); //förenklad kyrkoavgift
-    var result15 = document.getElementById("result15"); //arbetstagaren betalar i procent
-    var result16 = document.getElementById("result16"); //arbetsgivaren betalar i procent
-    var var1 = parseInt(e.currentTarget.var1.value);
+    var form = e.currentTarget;
+    var lon = parseInt(String(form.var1.value).replace(/[^0-9]/g, ""), 10);
+    if (!lon || lon < 0) { lon = 0; }
+    var medlem = form.kyrka.checked;
 
-    var calculatedResult3 = (var1 * 3142) / 10000; //sociala avgifter typ för alla
-    var calculatedResult4 = (var1 * 2982) / 10000; //inkomstskatt i Sthlm
-    var calculatedResult5 = (var1 * 65) / 100000; //begravningsavgift i Sthlm
-    var calculatedResult14 = var1 * 0.01 //förenklad kyrkoavgift
+    var arbetsgivaravgift = lon * 0.3142;
+    var skatt = preliminarskatt(lon);
+    var kyrkoavgift = medlem ? lon * 0.01 : 0;
+    var arbetstagarenBetalar = skatt + kyrkoavgift;
+    var netto = lon - arbetstagarenBetalar;
+    var lonekostnad = lon + arbetsgivaravgift;
+    var summa = arbetsgivaravgift + arbetstagarenBetalar;
 
-    //statlig inkomstskatt
-    var breakpoint = 613900 / 12 //beloppet för 2023
-    var calculatedResult8;
-    if (var1 >= breakpoint) {
-    	calculatedResult8 = 0.2 * (var1 - breakpoint)
-    } else {
-    	calculatedResult8 = 0
-    }
-
-    //public service-avgift
-    var breakpoint2 = 130025 / 12 //beloppet för 2023
-    var calculatedResult9;
-    if (var1 <= breakpoint2) {
-    	calculatedResult9 = 0.01 * var1
-    } else {
-    	calculatedResult9 = 1300/12
-    }
-
-    //jobbskatteavdraget förenklat
-    var calculatedResult10;
-    if (var1 <= 35350) {
-    	calculatedResult10 = 0
-    } else {
-    	if (var1 >= 59238) {
-    		calculatedResult10 = 0
-    	} else {
-    		calculatedResult10 = -3016
-    	}
-    }
-
-    var calculatedResult6 = calculatedResult3 + calculatedResult4 + calculatedResult5 + calculatedResult8 + calculatedResult10 + calculatedResult9 + calculatedResult14; //summa skatter mm
-    var calculatedResult = var1 - calculatedResult6 + calculatedResult3; //bruttolön per månad
-    var calculatedResult2 = calculatedResult * 12; //bruttolön per år
-    var calculatedResult11 = calculatedResult4 + calculatedResult5 + calculatedResult8 + calculatedResult10 + calculatedResult9; //arbetstagaren betalar i skatt mm
-    var calculatedResult12 = calculatedResult3 + var1 //arbetsgivaren betalar för den anställde
-    var calculatedResult13 = calculatedResult3 //arbetsgivaren betalar i avgift för den anställde
-	var calculatedResult0 = var1 //bruttolön per månad
-    var calculatedResult01 = calculatedResult0 * 12 //bruttolön per år
-    var calculatedResult15 = calculatedResult11 / var1 //arbetstagaren betalar i procent
-    var calculatedResult16 = calculatedResult3 / calculatedResult12 //arbetsgivaren betalar i procent
-    var calculatedResult7 = calculatedResult6 / calculatedResult12; //procent skatter mm
-
-    result.innerHTML = Math.round(calculatedResult) + " kr"; //bruttolön per månad
-    result1.innerHTML = Math.round(calculatedResult) + " kr"; //bruttolön per månad
-    result2.innerHTML = Math.round(calculatedResult2) + " kr"; //bruttolön per år
-    result3.innerHTML = Math.round(calculatedResult3) + " kr"; //sociala avgifter
-    result4.innerHTML = Math.round(calculatedResult4) + " kr"; //inkomstskatt
-    result5.innerHTML = Math.round(calculatedResult5) + " kr"; //begravningsavgift
-    result6.innerHTML = Math.round(calculatedResult6) + " kr"; //summa skatter mm
-    result7.innerHTML = Math.round(calculatedResult7 * 100) + " %"; //procent skatter mm
-    result8.innerHTML = Math.round(calculatedResult8) + " kr"; //statlig inkomstskatt
-    result9.innerHTML = Math.round(calculatedResult9) + " kr"; //public service-avgift
-    result10.innerHTML = Math.round(calculatedResult10) + " kr"; //jobbskatteavdraget förenklat
-    result11.innerHTML = Math.round(calculatedResult11) + " kr"; //arbetstagaren betalar i skatt mm
-    result12.innerHTML = Math.round(calculatedResult12) + " kr"; //arbetsgivaren betalar för den anställde
-    result13.innerHTML = Math.round(calculatedResult13) + " kr"; //arbetsgivaren betalar i avgift för den anställde
-    result0.innerHTML = Math.round(calculatedResult0) + " kr"; //bruttolön per månad
-    result01.innerHTML = Math.round(calculatedResult01) + " kr"; //bruttolön per år
-    result14.innerHTML = Math.round(calculatedResult14) + " kr"; //förenklad kyrkoavgift
-    result15.innerHTML = Math.round(calculatedResult15 * 100) + " %"; //arbetstagaren betalar i procent
-    result16.innerHTML = Math.round(calculatedResult16 * 100) + " %"; //arbetsgivaren betalar i procent
+    document.getElementById("result").innerHTML = kr(netto);
+    document.getElementById("result0").innerHTML = kr(lon);
+    document.getElementById("result1").innerHTML = kr(netto);
+    document.getElementById("result11").innerHTML = kr(arbetstagarenBetalar);
+    document.getElementById("result13").innerHTML = kr(arbetsgivaravgift);
+    document.getElementById("result12").innerHTML = kr(lonekostnad);
+    document.getElementById("result3").innerHTML = kr(arbetsgivaravgift);
+    document.getElementById("result4").innerHTML = kr(skatt);
+    document.getElementById("result14").innerHTML = medlem ? kr(kyrkoavgift) : "0 kr";
+    document.getElementById("result6").innerHTML = kr(summa);
+    document.getElementById("result15").innerHTML = lon ? Math.round(arbetstagarenBetalar / lon * 100) + " %" : "-";
+    document.getElementById("result16").innerHTML = lon ? Math.round(arbetsgivaravgift / lonekostnad * 100) + " %" : "-";
+    document.getElementById("result7").innerHTML = lon ? Math.round(summa / lonekostnad * 100) + " %" : "-";
+    document.getElementById("result01").innerHTML = kr(lon * 12);
+    document.getElementById("result2").innerHTML = kr(netto * 12);
+    return false;
   }
 </script>
 
