@@ -515,6 +515,25 @@
 <script src="assets/js/template.js"></script>
 <link rel="stylesheet" href="assets/css/Toast.css">
 <script src="assets/js/Toast.js"></script>
+<script>
+	if (!window.localStorage.getItem('newsletter_toast_closed') && location.pathname.indexOf('nyhetsbrev') === -1) {
+     new Toast({
+  		message: 'Nyhetsbrev: ett mail i månaden om frilansliv och egenföretagande',
+  		type: 'success',
+  		customButtons: [
+    	{
+      		text: 'Prenumerera',
+      		onClick: function() {
+        	window.location.href = 'https://annaleijon.se/nyhetsbrev.html';
+      	}
+    	}
+  ],
+  closeCallback: function() {
+  	window.localStorage.setItem('newsletter_toast_closed', '1');
+  }
+});
+}
+</script>
 
 </body>
 </html>
