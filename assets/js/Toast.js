@@ -88,7 +88,7 @@ Toast.prototype._open = function () {
         customButtons = customButtons.join('');
     }
 
-    this.toastEl.innerHTML = '\n        <p>' + this.options.message + '</p>\n        <button type="button" class="toastjs-btn toastjs-btn--close">Close</button>\n        ' + customButtons + '\n    ';
+    this.toastEl.innerHTML = '\n        <p>' + this.options.message + '</p>\n        <button type="button" class="toastjs-btn toastjs-btn--close">Stäng</button>\n        ' + customButtons + '\n    ';
 
     this.focusedElBeforeOpen = document.activeElement;
     document.querySelector('.toastjs-btn--close').focus();
