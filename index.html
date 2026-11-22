@@ -19,12 +19,11 @@
 	<meta name="author"      content="Anna Leijon">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://netdna.bootstrapcdn.com">
 	<link rel="preconnect" href="https://use.fontawesome.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Alice|Open+Sans:400,300,700&display=swap">
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Lobster|Alice|Open+Sans:400,300,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Alice|Open+Sans:400,300,700&display=swap"></noscript>
 	
 	<!-- Bootstrap -->
-	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"></noscript>
 	<!-- Fonts -->
@@ -250,7 +249,7 @@
 
 		<br/>
 		<div class="img">
-			<img src="assets/images/anna-leijon-blogg-hemsida-tech-frilans-optimerad.jpg" alt="Anna Leijon blogg hemsida tech frilans" style="text-align: center; width: 100%" class="responsive" width="1024" height="502" fetchpriority="high" decoding="async"/>
+			<img src="assets/images/anna-leijon-blogg-hemsida-tech-frilans-optimerad.jpg" srcset="assets/images/anna-leijon-blogg-hemsida-tech-frilans-680.webp 680w, assets/images/anna-leijon-blogg-hemsida-tech-frilans-1024.webp 1024w" sizes="(max-width: 767px) 100vw, 680px" alt="Anna Leijon blogg hemsida tech frilans" style="text-align: center; width: 100%" class="responsive" width="1024" height="502" fetchpriority="high" decoding="async"/>
 		</div>
 		
 
@@ -300,7 +299,7 @@
 					<li><a target="_blank" href="https://annaleijon.se/anst%C3%A4lld-vs-frilanskonsult-en-j%C3%A4mf%C3%B6relse-i-siffror.html">Anställd vs Frilanskonsult - en jämförelse i siffror</a></li>
 					<li><a target="_blank" href="https://annaleijon.se/frilansarguiden-hur-du-blir-frilansare.html">Börja frilansa med Frilansarguiden</a></li>
 					<li><a target="_blank" href="https://annaleijon.se/cv-mall-for-konsulter-och-frilansare.html">CV-mall för konsulter och frilansare</a></li>
-					<li><a target="_blank" href="https://annaleijon.se/success-stories.html">Success stories</a></li>
+					<li><a target="_blank" href="https://annaleijon.se/success-stories.html">Läsarröster</a></li>
 				</ul>
 			</div>
 		</div>
@@ -319,7 +318,7 @@
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 2em; padding-right: 2em;">
 				<div class="center">
 					<a target="_blank" href="https://annaleijon.se/kop-boken-bli-egen-frilansare-egenforetagare.html">
-						<img src="assets/images/anna-leijon-bli-egen-bok-framifran-542.jpg" alt="Anna Leijon Bli egen bok framifrån" style="width:300px" width="542" height="530" loading="lazy" decoding="async"/>
+						<img src="assets/images/anna-leijon-bli-egen-bok-framifran-542.jpg" srcset="assets/images/anna-leijon-bli-egen-bok-framifran-542.webp 542w" sizes="300px" alt="Anna Leijon Bli egen bok framifrån" style="width:300px" width="542" height="530" loading="lazy" decoding="async"/>
 					</a>
 				</div>
 				<br/>
@@ -580,25 +579,25 @@
 
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/template.js"></script>
 <link rel="stylesheet" href="assets/css/Toast.css">
 <script src="assets/js/Toast.js"></script>
 <script>
-	if (!window.localStorage.getItem('book_mvp_toast_closed')) {
+	if (!window.localStorage.getItem('newsletter_toast_closed') && location.pathname.indexOf('nyhetsbrev') === -1) {
      new Toast({
-  		message: 'NY BOK: "Bli Egen" av Anna Leijon',
+  		message: 'Nyhetsbrev: ett mail i månaden om frilansliv och egenföretagande',
   		type: 'success',
   		customButtons: [
     	{
-      		text: 'Köp den nu!',
+      		text: 'Prenumerera',
       		onClick: function() {
-        	window.open('https://annaleijon.se/kop-boken-bli-egen-frilansare-egenforetagare.html');
+        	window.location.href = 'https://annaleijon.se/nyhetsbrev.html';
       	}
     	}
   ],
   closeCallback: function() {
-  	window.localStorage.setItem('book_mvp_toast_closed', '1');
+  	window.localStorage.setItem('newsletter_toast_closed', '1');
   }
 });
 }

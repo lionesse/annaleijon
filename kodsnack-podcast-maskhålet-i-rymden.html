@@ -22,12 +22,11 @@
 	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://netdna.bootstrapcdn.com">
 	<link rel="preconnect" href="https://use.fontawesome.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Alice|Open+Sans:400,300,700&display=swap">
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Lobster|Alice|Open+Sans:400,300,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Alice|Open+Sans:400,300,700&display=swap"></noscript>
 
 	<!-- Bootstrap -->
-	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Icon font -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"></noscript>
 	<!-- Fonts -->
@@ -287,25 +286,25 @@
 
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/template.js"></script>
 <link rel="stylesheet" href="assets/css/Toast.css">
 <script src="assets/js/Toast.js"></script>
 <script>
-	if (!window.localStorage.getItem('book_mvp_toast_closed')) {
+	if (!window.localStorage.getItem('newsletter_toast_closed') && location.pathname.indexOf('nyhetsbrev') === -1) {
      new Toast({
-  		message: 'NY BOK: "Bli Egen" av Anna Leijon',
+  		message: 'Nyhetsbrev: ett mail i månaden om frilansliv och egenföretagande',
   		type: 'success',
   		customButtons: [
     	{
-      		text: 'Köp den nu!',
+      		text: 'Prenumerera',
       		onClick: function() {
-        	window.open('https://annaleijon.se/kop-boken-bli-egen-frilansare-egenforetagare.html');
+        	window.location.href = 'https://annaleijon.se/nyhetsbrev.html';
       	}
     	}
   ],
   closeCallback: function() {
-  	window.localStorage.setItem('book_mvp_toast_closed', '1');
+  	window.localStorage.setItem('newsletter_toast_closed', '1');
   }
 });
 }
