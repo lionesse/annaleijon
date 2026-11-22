@@ -41,25 +41,25 @@
     <meta name="google-site-verification" content="uAC4HQCnIW9H-RkTjKasPn8HcmHHVTS_vaIP1xr-7a0" />
 
     <!-- HTML Meta Tags -->
-    <meta name="description" content="Ett mejl i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
+    <meta name="description" content="Ett mail i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
     <link rel="canonical" href="https://annaleijon.se/nyhetsbrev.html">
 
     <!-- Google / Search Engine Tags -->
     <meta itemprop="name" content="Anna Leijon">
-    <meta itemprop="description" content="Ett mejl i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
+    <meta itemprop="description" content="Ett mail i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
     <meta itemprop="image" content="https://annaleijon.se/assets/images/anna-leijon.jpg">
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://annaleijon.se/nyhetsbrev.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nyhetsbrev för frilansare och egenföretagare – Anna Leijon">
-    <meta property="og:description" content="Ett mejl i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
+    <meta property="og:description" content="Ett mail i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
     <meta property="og:image" content="https://annaleijon.se/assets/images/anna-leijon.jpg">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nyhetsbrev för frilansare och egenföretagare – Anna Leijon">
-    <meta name="twitter:description" content="Ett mejl i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
+    <meta name="twitter:description" content="Ett mail i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.">
     <meta name="twitter:image" content="https://annaleijon.se/assets/images/anna-leijon.jpg">
     <meta name="twitter:site" content="@annaleijons">
 
@@ -73,7 +73,7 @@
   "@id": "https://annaleijon.se/nyhetsbrev.html",
   "url": "https://annaleijon.se/nyhetsbrev.html",
   "name": "Nyhetsbrev – Anna Leijon",
-  "description": "Ett mejl i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.",
+  "description": "Ett mail i månaden om frilansliv, egenföretagande och tech: lediga uppdrag, nytt om konsultmäklare och vad jag håller på med. Avsluta när du vill.",
   "inLanguage": "sv",
   "mainEntity": {
     "@type": "Person",
@@ -86,8 +86,18 @@
 }
     </script>
 	<style>
-		.nyhetsbrev-form { display: block; width: 100%; max-width: 540px; height: 530px; margin-left: auto; margin-right: auto; border: 0; }
-		@media (max-width: 600px) { .nyhetsbrev-form { height: 660px; } }
+		.nb-ingress { font-size: 1.15em; line-height: 1.6; margin: 0 0 8px; }
+		.nb-formruta { background: #f5f7fa; border-radius: 16px; padding: 26px 16px 10px; margin: 30px 0 10px; }
+		.nyhetsbrev-form { display: block; width: 100%; max-width: 540px; height: 410px; margin: 0 auto; border: 0; }
+		.nb-under { text-align: center; font-size: .86em; color: #8a8a8a; margin: 4px 0 0; }
+		.nb-sektion { margin-top: 40px; }
+		.nb-lista { list-style: none; padding-left: 0; margin: 0 0 10px; line-height: 1.6em; }
+		.nb-lista li { position: relative; padding: 8px 0 8px 32px; }
+		.nb-lista li:before { content: "\2713"; position: absolute; left: 4px; top: 8px; color: #0000EE; font-weight: 700; }
+		.nb-steg { list-style: none; counter-reset: nbsteg; padding-left: 0; margin: 0 0 10px; line-height: 1.6em; }
+		.nb-steg li { counter-increment: nbsteg; position: relative; padding: 6px 0 14px 46px; }
+		.nb-steg li:before { content: counter(nbsteg); position: absolute; left: 0; top: 6px; width: 30px; height: 30px; border-radius: 50%; background: #0000EE; color: #fff; font-size: 15px; font-weight: 700; line-height: 30px; text-align: center; }
+		.nb-finstilt { font-size: .93em; color: #8a8a8a; }
 	</style>
 </head>
 <body>
@@ -156,47 +166,44 @@
 						<h1 class="entry-title">Nyhetsbrev</h1>
 					</header>
 					<div class="entry-content">
-						<br/>
-						<div>Ett mejl i månaden om frilansliv, egenföretagande och tech. Jag skriver det själv, det är gratis och du kan avsluta när du vill.</div>
-						<br/>
-						<br/>
-						<div id="anmal">
-						<iframe src="https://168a3daa.sibforms.com/v2/serve/MUIFAGCYjJ8euidTYLgOS5Uine3BzGro5qE5u1OG6Hw0p1sgRdUV-ktKoyHlwKxsVhbXQIKMDZIaEs75fYsSorczpTXGM6R3iAaoPIv5jBJiBnyGTPwxZwaOz9gD9GrQ0_fPwfaPonvfTMUyxy5M3hFCZm19nDQqFslTSSaZnNBUDOlafNPp2lc-toIQuqtePCqiXnZsi69UJvgqLw==" class="nyhetsbrev-form" frameborder="0" scrolling="auto" allowfullscreen loading="lazy" title="Anmäl dig till Anna Leijons nyhetsbrev"></iframe>
+
+						<p class="nb-ingress">Ett mail i månaden om frilansliv, egenföretagande och tech. Jag skriver det själv, det är gratis och du kan avsluta när du vill.</p>
+
+						<div id="anmal" class="nb-formruta">
+							<iframe src="https://168a3daa.sibforms.com/v2/serve/MUIFAGCYjJ8euidTYLgOS5Uine3BzGro5qE5u1OG6Hw0p1sgRdUV-ktKoyHlwKxsVhbXQIKMDZIaEs75fYsSorczpTXGM6R3iAaoPIv5jBJiBnyGTPwxZwaOz9gD9GrQ0_fPwfaPonvfTMUyxy5M3hFCZm19nDQqFslTSSaZnNBUDOlafNPp2lc-toIQuqtePCqiXnZsi69UJvgqLw==" class="nyhetsbrev-form" frameborder="0" scrolling="auto" allowfullscreen loading="lazy" title="Anmäl dig till Anna Leijons nyhetsbrev"></iframe>
+							<p class="nb-under">Syns inte formuläret? <a target="_blank" rel="noreferrer noopener" href="https://168a3daa.sibforms.com/serve/MUIFAGCYjJ8euidTYLgOS5Uine3BzGro5qE5u1OG6Hw0p1sgRdUV-ktKoyHlwKxsVhbXQIKMDZIaEs75fYsSorczpTXGM6R3iAaoPIv5jBJiBnyGTPwxZwaOz9gD9GrQ0_fPwfaPonvfTMUyxy5M3hFCZm19nDQqFslTSSaZnNBUDOlafNPp2lc-toIQuqtePCqiXnZsi69UJvgqLw==">Anmäl dig här i stället</a>.</p>
 						</div>
-						<div class="text-center"><small>Syns inte formuläret? <a target="_blank" rel="noreferrer noopener" href="https://168a3daa.sibforms.com/serve/MUIFAGCYjJ8euidTYLgOS5Uine3BzGro5qE5u1OG6Hw0p1sgRdUV-ktKoyHlwKxsVhbXQIKMDZIaEs75fYsSorczpTXGM6R3iAaoPIv5jBJiBnyGTPwxZwaOz9gD9GrQ0_fPwfaPonvfTMUyxy5M3hFCZm19nDQqFslTSSaZnNBUDOlafNPp2lc-toIQuqtePCqiXnZsi69UJvgqLw==">Anmäl dig här i stället</a>.</small></div>
-						<br/>
-						<br/>
-						<h2 class="entry-title">Vad du får</h2>
-						<br/>
-						<div>Lediga uppdrag jag har fått syn på.</div>
-						<div>Nytt från <a href="https://annaleijon.se/lista-pa-konsultmaklare-i-stockholm.html">konsultmäklarlistan</a> – vilka som tillkommit, slåtts ihop eller lagt ner.</div>
-						<div>Mina LinkedIn-inlägg du kanske missade.</div>
-						<div>Frilansare som är tillgängliga och söker uppdrag.</div>
-						<div>Vad jag håller på med just nu.</div>
-						<div>Och lite siffror, för att siffror är kul.</div>
-						<br/>
-						<br/>
-						<h2 class="entry-title">Hur ofta</h2>
-						<br/>
-						<div>Ungefär en gång i månaden. Inga extrautskick och ingen reklam mellan varven.</div>
-						<br/>
-						<br/>
-						<h2 class="entry-title">Så går anmälan till</h2>
-						<br/>
-						<div>Du fyller i förnamn och mejladress. Sedan får du ett bekräftelsemejl som du behöver klicka i. Det är för att ingen ska kunna anmäla dig mot din vilja – först när du klickat hamnar du på listan.</div>
-						<br/>
-						<div>Får du inget mejl inom någon minut, titta i skräpposten.</div>
-						<br/>
-						<br/>
-						<h2 class="entry-title">Dina uppgifter</h2>
-						<br/>
-						<div>Jag sparar ditt förnamn och din mejladress, och använder dem bara för att skicka nyhetsbrevet. Listan ligger hos Brevo, som är mitt personuppgiftsbiträde.</div>
-						<br/>
-						<div>Längst ned i varje utskick finns en avprenumerationslänk. Klickar du på den försvinner du från listan direkt. Jag säljer eller lånar aldrig ut adresser till någon.</div>
-						<br/>
-						<div>Har du frågor om dina uppgifter mejlar du mig på <a href="https://annaleijon.se/om-mig.html#kontakt">anna@annaleijon.com</a>.</div>
-						<br/>
-						<br/>
+
+						<div class="nb-sektion">
+							<h2 class="entry-title">Vad du får</h2>
+							<ul class="nb-lista">
+								<li>Lediga uppdrag jag har fått syn på.</li>
+								<li>Nytt från <a href="https://annaleijon.se/lista-pa-konsultmaklare-i-stockholm.html">konsultmäklarlistan</a> – vilka som tillkommit, slagits ihop eller lagt ned.</li>
+								<li>Mina LinkedIn-inlägg du kanske missade.</li>
+								<li>Frilansare som är tillgängliga och söker uppdrag.</li>
+								<li>Vad jag håller på med just nu.</li>
+								<li>Och lite siffror, för att siffror är kul.</li>
+							</ul>
+							<p>Ungefär en gång i månaden. Inga extrautskick och ingen reklam mellan varven.</p>
+						</div>
+
+						<div class="nb-sektion">
+							<h2 class="entry-title">Så går det till</h2>
+							<ol class="nb-steg">
+								<li>Du fyller i förnamn och mailadress.</li>
+								<li>Du får ett bekräftelsemail. Klicka på länken i det – det är för att ingen ska kunna anmäla dig mot din vilja.</li>
+								<li>Klart. Välkomstmailet kommer direkt, och sedan nästa nyhetsbrev när det går ut.</li>
+							</ol>
+							<p class="nb-finstilt">Får du inget mail inom någon minut, titta i skräpposten.</p>
+						</div>
+
+						<div class="nb-sektion nb-finstilt">
+							<h2 class="entry-title">Dina uppgifter</h2>
+							<p>Jag sparar ditt förnamn och din mailadress, och använder dem bara för att skicka nyhetsbrevet. Listan ligger hos Brevo, som är mitt personuppgiftsbiträde.</p>
+							<p>Längst ned i varje utskick finns en avprenumerationslänk. Klickar du på den försvinner du från listan direkt. Jag säljer eller lånar aldrig ut adresser till någon.</p>
+							<p>Har du frågor om dina uppgifter <a href="https://annaleijon.se/om-mig.html#kontakt">hör av dig</a>.</p>
+						</div>
+
 					</div>
 				</article>
  				

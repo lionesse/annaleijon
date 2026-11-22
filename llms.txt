@@ -24,3 +24,4 @@
 - [Läsarröster](https://annaleijon.se/success-stories.html): success stories och feedback från läsare.
 - [Om mig](https://annaleijon.se/om-mig.html): presentation, medverkan i media, nomineringar, poddar, pressbilder och kontakt.
 - [Poddar & video](https://annaleijon.se/videos.html)
+- [Nyhetsbrev](https://annaleijon.se/nyhetsbrev.html): ett mail i månaden om frilansliv, egenföretagande och tech – lediga uppdrag, nytt om konsultmäklare och tillgängliga frilansare.
