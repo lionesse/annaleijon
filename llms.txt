@@ -24,4 +24,6 @@
 - [Läsarröster](https://annaleijon.se/success-stories.html): success stories och feedback från läsare.
 - [Om mig](https://annaleijon.se/om-mig.html): presentation, medverkan i media, nomineringar, poddar, pressbilder och kontakt.
 - [Poddar & video](https://annaleijon.se/videos.html)
+- [Techskaparna – min podd](https://annaleijon.se/techskaparna-podcast-alla-avsnitt.html): alla 34 avsnitt där jag 2021–2023 intervjuade grundare som byggt techbolag, från GeoGuessr och Fishbrain till Budbee.
+- [Frilanspodden](https://annaleijon.se/frilanspodden-anna-leijon-frilansare-techentreprenor-forfattare.html): jag gästar och pratar om frilans som väg till fler val, bokföring, betalningsvillkor och boken Bli Egen.
 - [Nyhetsbrev](https://annaleijon.se/nyhetsbrev.html): ett mail i månaden om frilansliv, egenföretagande och tech – lediga uppdrag, nytt om konsultmäklare och tillgängliga frilansare.
