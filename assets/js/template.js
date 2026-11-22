@@ -1,6 +1,7 @@
 jQuery(document).ready(function($) {
 
 	var my_nav = $('.navbar-sticky'); 
+	if (!my_nav.length) { return; } // sidor utan fast meny, t.ex. 404
 	// grab the initial top offset of the navigation 
 	var sticky_navigation_offset_top = my_nav.offset().top;
 	
