@@ -1,0 +1,67 @@
+name: Live-räknare
+
+# Hämtar antal aktiva besökare de senaste 30 minuterna från Google Analytics (realtid)
+# och skriver talet till live.json på grenen live-data. Hemsidan läser filen därifrån.
+#
+# Säkerhet:
+# - Ingen nyckel eller hemlighet finns i repot. Inloggningen sker med Workload Identity
+#   Federation: GitHub intygar vilket repo och vilket arbetsflöde som kör, Google lämnar
+#   ut en åtkomsttoken som gäller i 5 minuter.
+# - Google godtar bara: repo-ID 103300539, filen .github/workflows/live-counter.yml på master,
+#   och bara när den startas av schemat eller manuellt. Forkar och pull requests nekas.
+# - Tjänstekontot ga-live-counter har bara Läsare-behörighet i Analytics och inga roller i Google Cloud.
+# - live.json innehåller bara ett tal och en tidsstämpel, inga personuppgifter.
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # för att skriva live.json till grenen live-data
+  id-token: write   # för att GitHub ska kunna intyga arbetsflödet mot Google
+
+concurrency:
+  group: live-counter
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Logga in hos Google (utan nyckel)
+        id: auth
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: projects/861089667681/locations/global/workloadIdentityPools/github/providers/annaleijon-repo
+          service_account: ga-live-counter@annaleijon-live-counter.iam.gserviceaccount.com
+          token_format: access_token
+          access_token_lifetime: 300s
+          create_credentials_file: false
+          export_environment_variables: false
+
+      - name: Hämta aktiva besökare och publicera live.json
+        env:
+          GA_TOKEN: ${{ steps.auth.outputs.access_token }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          resp=$(curl -sS --fail-with-body --max-time 30 -X POST \
+            -H "Authorization: Bearer ${GA_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d '{"metrics":[{"name":"activeUsers"}],"minuteRanges":[{"name":"senaste30","startMinutesAgo":29,"endMinutesAgo":0}]}' \
+            "https://analyticsdata.googleapis.com/v1beta/properties/303570237:runRealtimeReport")
+          n=$(printf '%s' "$resp" | jq -r '.rows[0].metricValues[0].value // "0"')
+          if ! [[ "$n" =~ ^[0-9]{1,6}$ ]]; then n=0; fi
+          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "Aktiva senaste 30 min: $n"
+
+          mkdir -p "$RUNNER_TEMP/live" && cd "$RUNNER_TEMP/live"
+          git init -q -b live-data
+          printf '{"active":%s,"updated":"%s"}\n' "$n" "$now" > live.json
+          git add live.json
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "live: ${n} (${now})"
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)" \
+            push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" live-data:live-data
