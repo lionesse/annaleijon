@@ -38,6 +38,7 @@ jobs:
           service_account: ga-live-counter@annaleijon-live-counter.iam.gserviceaccount.com
           token_format: access_token
           access_token_lifetime: 300s
+          access_token_scopes: https://www.googleapis.com/auth/analytics.readonly
           create_credentials_file: false
           export_environment_variables: false
 
@@ -47,11 +48,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          resp=$(curl -sS --fail-with-body --max-time 30 -X POST \
+          if ! resp=$(curl -sS --fail-with-body --max-time 30 -X POST \
             -H "Authorization: Bearer ${GA_TOKEN}" \
             -H "Content-Type: application/json" \
             -d '{"metrics":[{"name":"activeUsers"}],"minuteRanges":[{"name":"senaste30","startMinutesAgo":29,"endMinutesAgo":0}]}' \
-            "https://analyticsdata.googleapis.com/v1beta/properties/303570237:runRealtimeReport")
+            "https://analyticsdata.googleapis.com/v1beta/properties/303570237:runRealtimeReport"); then
+            echo "Fel från Google Analytics:"; printf '%s' "$resp" | jq -r '.error.status + ": " + .error.message' 2>/dev/null || true
+            exit 1
+          fi
           n=$(printf '%s' "$resp" | jq -r '.rows[0].metricValues[0].value // "0"')
           if ! [[ "$n" =~ ^[0-9]{1,6}$ ]]; then n=0; fi
           now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
