@@ -3,69 +3,159 @@ name: Live-räknare
 # Hämtar antal aktiva besökare de senaste 30 minuterna från Google Analytics (realtid)
 # och skriver talet till live.json på grenen live-data. Hemsidan läser filen därifrån.
 #
+# Så körs det: ett jobb hämtar siffran var 5:e minut i ca 5,5 timmar och startar sedan
+# om sig självt (GitHubs schemaläggning startade inte för det här repot). Schemat nedan
+# är bara en reserv som startar kedjan igen om den skulle stanna.
+#
 # Säkerhet:
 # - Ingen nyckel eller hemlighet finns i repot. Inloggningen sker med Workload Identity
 #   Federation: GitHub intygar vilket repo och vilket arbetsflöde som kör, Google lämnar
-#   ut en åtkomsttoken som gäller i 5 minuter.
+#   ut en åtkomsttoken som gäller i 5 minuter och bara får läsa Analytics.
 # - Google godtar bara: repo-ID 103300539, filen .github/workflows/live-counter.yml på master,
 #   och bara när den startas av schemat eller manuellt. Forkar och pull requests nekas.
 # - Tjänstekontot ga-live-counter har bara Läsare-behörighet i Analytics och inga roller i Google Cloud.
 # - live.json innehåller bara ett tal och en tidsstämpel, inga personuppgifter.
+# - Kör manuellt med "verifiera" ikryssat för att kontrollera att kontot bara kan läsa:
+#   jobbet försöker ändra i Analytics (till samma värde, så inget ändras) och läsa behörigheter
+#   i Google Cloud, och blir rött om något av det lyckas.
 
 on:
   schedule:
-    - cron: '2-59/5 * * * *'   # var 5:e minut, förskjutet från de mest belastade minuterna
+    - cron: '17 */6 * * *'   # reserv: startar kedjan igen om den stannat
   workflow_dispatch:
+    inputs:
+      verifiera:
+        description: 'Kontrollera att kontot bara kan läsa (ingen loop)'
+        type: boolean
+        default: false
 
 permissions:
-  contents: write   # för att skriva live.json till grenen live-data
-  id-token: write   # för att GitHub ska kunna intyga arbetsflödet mot Google
+  contents: write   # skriva live.json till grenen live-data
+  id-token: write   # GitHub intygar arbetsflödet mot Google
+  actions: write    # starta om sig själv efter ca 5,5 timmar
 
 concurrency:
   group: live-counter
   cancel-in-progress: false
 
+env:
+  PROVIDER: projects/861089667681/locations/global/workloadIdentityPools/github/providers/annaleijon-repo
+  SA: ga-live-counter@annaleijon-live-counter.iam.gserviceaccount.com
+  PROPERTY: '303570237'
+
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 350
     steps:
-      - name: Logga in hos Google (utan nyckel)
-        id: auth
-        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
-        with:
-          workload_identity_provider: projects/861089667681/locations/global/workloadIdentityPools/github/providers/annaleijon-repo
-          service_account: ga-live-counter@annaleijon-live-counter.iam.gserviceaccount.com
-          token_format: access_token
-          access_token_lifetime: 300s
-          access_token_scopes: https://www.googleapis.com/auth/analytics.readonly
-          create_credentials_file: false
-          export_environment_variables: false
+      - name: Hjälpfunktioner
+        run: |
+          cat > "$RUNNER_TEMP/lib.sh" <<'EOF'
+          set -uo pipefail
+          # Hämtar en Google-token för tjänstekontot med angiven behörighet (giltig 5 min)
+          # och lägger den i variabeln TOKEN.
+          google_token() {
+            local scope="$1" idt fed tok
+            TOKEN=
+            idt=$(curl -sS --fail --max-time 20 -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+              "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://iam.googleapis.com/${PROVIDER}" | jq -r '.value') || return 1
+            echo "::add-mask::${idt}"
+            fed=$(jq -n --arg t "$idt" --arg a "//iam.googleapis.com/${PROVIDER}" '{
+                grant_type:"urn:ietf:params:oauth:grant-type:token-exchange", audience:$a,
+                scope:"https://www.googleapis.com/auth/cloud-platform",
+                requested_token_type:"urn:ietf:params:oauth:token-type:access_token",
+                subject_token:$t, subject_token_type:"urn:ietf:params:oauth:token-type:jwt"}' \
+              | curl -sS --fail --max-time 20 -H "Content-Type: application/json" -d @- https://sts.googleapis.com/v1/token \
+              | jq -r '.access_token') || return 1
+            echo "::add-mask::${fed}"
+            tok=$(jq -n --arg s "$scope" '{scope:[$s], lifetime:"300s"}' \
+              | curl -sS --fail --max-time 20 -H "Authorization: Bearer ${fed}" -H "Content-Type: application/json" -d @- \
+                "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SA}:generateAccessToken" \
+              | jq -r '.accessToken') || return 1
+            echo "::add-mask::${tok}"
+            [ -n "$tok" ] && [ "$tok" != "null" ] || return 1
+            TOKEN="$tok"
+          }
+          EOF
 
-      - name: Hämta aktiva besökare och publicera live.json
+      - name: Verifiera att kontot bara kan läsa
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.verifiera }}
+        run: |
+          source "$RUNNER_TEMP/lib.sh"
+          fail=0
+          check() { # namn, förväntad status, faktisk status
+            if [ "$3" = "$2" ]; then echo "OK   $1 (HTTP $3)"; else echo "FEL  $1 (HTTP $3, förväntat $2)"; fail=1; fi
+          }
+          google_token https://www.googleapis.com/auth/analytics.readonly || { echo "Kunde inte logga in"; exit 1; }; RO="$TOKEN"
+          s=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H "Authorization: Bearer $RO" -H "Content-Type: application/json" \
+            -d '{"metrics":[{"name":"activeUsers"}]}' "https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY}:runRealtimeReport")
+          check "Läsa realtidsdata i Analytics" 200 "$s"
+          name=$(curl -s -H "Authorization: Bearer $RO" "https://analyticsadmin.googleapis.com/v1beta/properties/${PROPERTY}" | jq -r '.displayName // empty')
+          # Skrivförsök 1: med läs-token (ändrar till samma namn, så inget ändras ens om det skulle gå igenom)
+          s=$(jq -n --arg n "${name:-x}" '{displayName:$n}' | curl -s -o /dev/null -w '%{http_code}' -X PATCH \
+            -H "Authorization: Bearer $RO" -H "Content-Type: application/json" -d @- \
+            "https://analyticsadmin.googleapis.com/v1beta/properties/${PROPERTY}?updateMask=displayName")
+          check "Skriva i Analytics med läs-token" 403 "$s"
+          # Skrivförsök 2: med redigerings-token – ska stoppas av rollen Läsare
+          google_token https://www.googleapis.com/auth/analytics.edit || { echo "Kunde inte hämta token"; exit 1; }; RW="$TOKEN"
+          s=$(jq -n --arg n "${name:-x}" '{displayName:$n}' | curl -s -o /dev/null -w '%{http_code}' -X PATCH \
+            -H "Authorization: Bearer $RW" -H "Content-Type: application/json" -d @- \
+            "https://analyticsadmin.googleapis.com/v1beta/properties/${PROPERTY}?updateMask=displayName")
+          check "Skriva i Analytics med redigerings-token (rollen Läsare ska stoppa)" 403 "$s"
+          # Google Cloud: tjänstekontot ska inte kunna läsa eller ändra projektet
+          google_token https://www.googleapis.com/auth/cloud-platform || { echo "Kunde inte hämta token"; exit 1; }; CP="$TOKEN"
+          s=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H "Authorization: Bearer $CP" -H "Content-Type: application/json" -d '{}' \
+            "https://cloudresourcemanager.googleapis.com/v1/projects/annaleijon-live-counter:getIamPolicy")
+          check "Läsa behörigheter i Google Cloud-projektet" 403 "$s"
+          s=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $CP" \
+            "https://iam.googleapis.com/v1/projects/annaleijon-live-counter/serviceAccounts/${SA}/keys")
+          check "Se tjänstekontots nycklar" 403 "$s"
+          [ "$fail" = 0 ] && echo "Alla kontroller OK: kontot kan bara läsa Analytics." || exit 1
+
+      - name: Hämta aktiva besökare var 5:e minut (ca 5,5 h)
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.verifiera) }}
         env:
-          GA_TOKEN: ${{ steps.auth.outputs.access_token }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -euo pipefail
-          if ! resp=$(curl -sS --fail-with-body --max-time 30 -X POST \
-            -H "Authorization: Bearer ${GA_TOKEN}" \
-            -H "Content-Type: application/json" \
-            -d '{"metrics":[{"name":"activeUsers"}],"minuteRanges":[{"name":"senaste30","startMinutesAgo":29,"endMinutesAgo":0}]}' \
-            "https://analyticsdata.googleapis.com/v1beta/properties/303570237:runRealtimeReport"); then
-            echo "Fel från Google Analytics:"; printf '%s' "$resp" | jq -r '.error.status + ": " + .error.message' 2>/dev/null || true
-            exit 1
-          fi
-          n=$(printf '%s' "$resp" | jq -r '.rows[0].metricValues[0].value // "0"')
-          if ! [[ "$n" =~ ^[0-9]{1,6}$ ]]; then n=0; fi
-          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          echo "Aktiva senaste 30 min: $n"
-
+          source "$RUNNER_TEMP/lib.sh"
+          end=$(( $(date +%s) + 330*60 ))
           mkdir -p "$RUNNER_TEMP/live" && cd "$RUNNER_TEMP/live"
           git init -q -b live-data
-          printf '{"active":%s,"updated":"%s"}\n' "$n" "$now" > live.json
-          git add live.json
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -q -m "live: ${n} (${now})"
-          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)" \
-            push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" live-data:live-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          auth="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          echo "::add-mask::$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          while [ "$(date +%s)" -lt "$end" ]; do
+            if google_token https://www.googleapis.com/auth/analytics.readonly && tok="$TOKEN" && \
+               resp=$(curl -sS --fail-with-body --max-time 30 -X POST \
+                 -H "Authorization: Bearer ${tok}" -H "Content-Type: application/json" \
+                 -d '{"metrics":[{"name":"activeUsers"}],"minuteRanges":[{"name":"senaste30","startMinutesAgo":29,"endMinutesAgo":0}]}' \
+                 "https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY}:runRealtimeReport"); then
+              n=$(printf '%s' "$resp" | jq -r '.rows[0].metricValues[0].value // "0"')
+              [[ "$n" =~ ^[0-9]{1,6}$ ]] || n=0
+              now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+              printf '{"active":%s,"updated":"%s"}\n' "$n" "$now" > live.json
+              git add live.json
+              git commit -q --amend --allow-empty -m "live: ${n} (${now})" 2>/dev/null || git commit -q -m "live: ${n} (${now})"
+              if git -c http.extraheader="$auth" push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" live-data:live-data; then
+                echo "$now  aktiva: $n"
+              else
+                echo "$now  kunde inte spara live.json"
+              fi
+            else
+              echo "$(date -u +%H:%M:%S)  kunde inte hämta från Analytics, försöker igen om 5 min"
+              printf '%s' "${resp:-}" | jq -r '.error.status + ": " + .error.message' 2>/dev/null || true
+            fi
+            sleep $(( 300 - $(date +%s) % 300 ))
+          done
+
+      - name: Starta om (nästa omgång)
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.verifiera) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -sS --fail --max-time 30 -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/live-counter.yml/dispatches" \
+            -d '{"ref":"master"}'
+          echo "Nästa omgång startad."
